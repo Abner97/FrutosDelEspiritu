@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Navigation from "./components/Navbar";
-import { Container, Row, Col } from "react-bootstrap";
 
 function App() {
   return (
@@ -12,13 +11,8 @@ function App() {
     // </div>
     <>
       <Navigation></Navigation>
-      <Container fluid>
-        <Row>
-          <Col>
-            <Home></Home>
-          </Col>
-        </Row>
-      </Container>
+
+      <Home></Home>
     </>
   );
 }

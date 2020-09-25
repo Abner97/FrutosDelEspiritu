@@ -1,28 +1,24 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
 
+const answers = ["Siempre", "Casi Siempre", "A veces", "Poco", "Nunca"];
 const Answers = () => {
   return (
-    <div className="d-flex flex-sm-column flex-lg-column flex-xl-row w-50 flex-wrap flex-sm-wrap justify-content-around w-50 h-auto ">
-      <Button variant="primary" size="lg" className="w-25 m-1">
-        Siempre
-      </Button>
-      <Button variant="primary" size="lg" className="w-25 m-1">
-        Casi Siempre
-      </Button>
-      <Button variant="primary" size="lg" className="w-25 m-1 ">
-        Aveces
-      </Button>
-      <Button variant="primary" size="lg" className="w-25 m-1 ">
-        Poco
-      </Button>
-      <Button variant="primary" size="lg" className="w-25 m-1">
-        Nunca
-      </Button>
-    
-      
-    </div>
+    <>
+      {answers.map((e, i) => {
+        return (
+          <Col key={i} xl={{ span: "6" }}>
+            <Button variant="primary" size="lg" className="w-100 m-1 hoverable" onClick={()=>getAnswer(e)}>
+              {e}
+            </Button>
+          </Col>
+        );
+      })}
+    </>
   );
 };
 
+const getAnswer = (answ)=>{
+    console.log(answ);
+}
 export default Answers;

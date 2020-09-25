@@ -1,16 +1,16 @@
 import React from "react";
-import QuestionCard from "./QuestionCard";
-
+import { Container} from "react-bootstrap";
+import Question from "./Question";
 const Home = () => {
   return (
-      <>
-      <div className="d-flex flex-column justify-content-start align-items-center bg-info h-100" style={{padding:"10%"}}>
-         <QuestionCard></QuestionCard>
-      </div>
-        
-    
-      </>
-    
+    <>
+    <div className="d-flex h-100 justify-content-center  align-items-center" style={{background:"#006080"}}>
+    <Container fluid className="h-full p-5" >
+          <Question/> 
+      </Container>
+    </div>
+     
+    </>
   );
 };
 
