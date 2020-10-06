@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button, Col } from "react-bootstrap";
-import { AnswersProvider } from "../providers/answers_provider";
+import { Provider } from "../providers/Provider";
 
 
 
-const answerProvider = new AnswersProvider();
+const answerProvider = new Provider();
 
 
 const Answers = () => {
