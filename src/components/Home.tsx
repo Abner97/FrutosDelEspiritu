@@ -7,7 +7,7 @@ const Home = () => {
     <div className="d-flex h-100 justify-content-center  align-items-center" style={{background:"#006080"}}>
     <Container fluid className="h-full p-5" >
           <Question/> 
-      </Container>
+    </Container>
     </div>
      
     </>

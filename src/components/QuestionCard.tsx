@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 
-const QuestionCard = ({ question, options }) => {
+const QuestionCard = () => {
   return (
     <Card className="mb-3">
       <Card.Body>
