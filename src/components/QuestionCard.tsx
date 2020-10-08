@@ -2,17 +2,19 @@ import React, { useContext, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import QuestionsContext from "../context/questions/QuestionsContext";
 
-const QuestionCard = () => {
+const QuestionCard: React.FC = () => {
   const questionsContext = useContext(QuestionsContext);
-  const { questions, getQuestions } = questionsContext;
+  const { questions, getQuestions, actualIndex } = questionsContext;
+
   useEffect(() => {
     getQuestions();
-    // console.log(questions);
-  }, [getQuestions]);
+    console.log(questions);
+  }, []);
+
   return (
     <Card className="mb-3">
       <Card.Body>
-        {/* {questions !== [] ? <h2>{questions[0]}</h2> : <h2>asd</h2>} */}
+        <h2>{questions.length !== 0 && questions[actualIndex].question}</h2>
       </Card.Body>
     </Card>
   );

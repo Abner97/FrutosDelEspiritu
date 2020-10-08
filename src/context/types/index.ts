@@ -1,1 +1,11 @@
 export const GET_QUESTIONS = "GET_QUESTIONS";
+export const INCREASE_INDEX = "INCREASE_INDEX";
+export const AMOR = "AMOR";
+export const GOZO = "GOZO";
+export const PAZ = "PAZ";
+export const PACIENCIA = "PACIENCIA";
+export const BENIGNIDAD = "BENIGNIDAD";
+export const FE = "FE";
+export const MANSEDUMBRE = "MANSEDUMBRE";
+export const DOMINIO_PROPIO = "DOMINIO_PROPIO";
+export const BONDAD = "BONDAD";

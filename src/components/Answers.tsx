@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Col } from "react-bootstrap";
 import allAnswers from "../data/answers/all_answers";
+import QuestionsContext from "../context/questions/QuestionsContext";
 
 const Answers = () => {
-  const [answers, setAnswers] = useState(allAnswers);
+  const [answers] = useState(allAnswers);
+  const questionsContext = useContext(QuestionsContext);
+  const { increaseIndex } = questionsContext;
 
   return (
     <>
@@ -14,7 +17,7 @@ const Answers = () => {
               variant="primary"
               size="lg"
               className="w-100 m-1 hoverable"
-              onClick={() => {}}
+              onClick={() => increaseIndex()}
             >
               {e.answer}
             </Button>

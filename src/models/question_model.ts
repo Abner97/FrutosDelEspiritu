@@ -17,7 +17,7 @@ export class QuestionModel {
     const items: Array<QuestionModel> = [];
     if (querySnapshot === null) return items;
     querySnapshot.docs.forEach((item) => {
-      const question = QuestionModel.fromJson(item.data);
+      const question = QuestionModel.fromJson(item.data());
       items.push(question);
     });
     return items;
