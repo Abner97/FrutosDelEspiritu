@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Navigation from "./components/Navbar";
+import QuestionsState from "./context/questions/QuestionsState";
 
 function App() {
   return (
@@ -9,11 +10,11 @@ function App() {
     //   <Navigation></Navigation>
     //   <Home></Home>
     // </div>
-    <>
+    <QuestionsState>
       <Navigation></Navigation>
 
       <Home></Home>
-    </>
+    </QuestionsState>
   );
 }
 
