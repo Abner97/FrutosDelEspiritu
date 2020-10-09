@@ -12,6 +12,15 @@ import {
 const Navigation = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar.Brand href="#home">
+        <img
+          src="./assets/images/logo.svg"
+          width="60"
+          height="60"
+          className="d-inline-block align-top"
+          alt="React Bootstrap logo"
+        />
+      </Navbar.Brand>
       <Navbar.Brand href="#home">Test Frutos del Espiritu</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

@@ -13,7 +13,7 @@ const QuestionCard: React.FC = () => {
 
   return (
     <Card className="mb-3">
-      <Card.Body>
+      <Card.Body style={{ background: "#90c73f" }}>
         <h2>{questions.length !== 0 && questions[actualIndex].question}</h2>
       </Card.Body>
     </Card>

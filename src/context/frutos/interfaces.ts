@@ -1,13 +1,24 @@
 import { Domain } from "domain";
 
-export interface frutosPoints {
-  Amor: number;
-  Gozo: number;
-  Paz: number;
-  Paciencia: number;
-  Benignidad: number;
-  Fe: number;
-  Mansedumbre: number;
-  Dominio_propio: number;
-  Bondad: number;
+export interface propsInterface {
+  children: React.ReactNode;
+}
+
+export interface fruitsPoints {
+  fruto: string;
+  points: number;
+}
+
+export interface fruitsInterface {
+  frutos: Array<fruitsPoints>;
+}
+
+export interface providerValueInterface {
+  frutos: Array<fruitsPoints>;
+  increaseFruitPoint: Function;
+}
+
+export interface actionInterface {
+  type: string;
+  payload: Array<fruitsPoints>;
 }

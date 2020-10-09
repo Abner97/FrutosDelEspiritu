@@ -1,27 +1,15 @@
-import {
-  AMOR,
-  BENIGNIDAD,
-  BONDAD,
-  DOMINIO_PROPIO,
-  FE,
-  GET_QUESTIONS,
-  GOZO,
-  INCREASE_INDEX,
-  MANSEDUMBRE,
-  PACIENCIA,
-  PAZ,
-} from "../types/index";
+import { ADD_POINTS } from "../types/index";
 
-import { frutosPoints } from "./interfaces";
+import { actionInterface, fruitsInterface } from "./interfaces";
 
-export default (state: frutosPoints, action: actionInterface) => {
+export default (state: fruitsInterface, action: actionInterface) => {
   switch (action.type) {
-    case AMOR:
-      const newState: questionInterface = {
-        questions: action.payload,
-        actualIndex: state.actualIndex,
+    case ADD_POINTS:
+      const newState: fruitsInterface = {
+        frutos: action.payload,
       };
       console.log(action.payload);
+      return newState;
 
     default:
       return state;

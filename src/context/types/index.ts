@@ -9,3 +9,4 @@ export const FE = "FE";
 export const MANSEDUMBRE = "MANSEDUMBRE";
 export const DOMINIO_PROPIO = "DOMINIO_PROPIO";
 export const BONDAD = "BONDAD";
+export const ADD_POINTS = "ADD_POINTS";
