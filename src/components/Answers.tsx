@@ -3,7 +3,7 @@ import { Button, Col } from "react-bootstrap";
 import allAnswers from "../data/answers/all_answers";
 import QuestionsContext from "../context/questions/QuestionsContext";
 import FruitsContext from "../context/frutos/FruitsContext";
-
+import { useHistory } from "react-router-dom";
 const Answers = () => {
   const [answers] = useState(allAnswers);
   const questionsContext = useContext(QuestionsContext);
@@ -12,9 +12,17 @@ const Answers = () => {
   const { increaseIndex, questions, actualIndex } = questionsContext;
   const { increaseFruitPoint } = fruitsContexts;
 
+  const history = useHistory();
+
   const onClick = (type: string, points: number) => {
-    increaseIndex();
-    increaseFruitPoint(type, points);
+    if (actualIndex == questions.length - 1) {
+      history.push("/results");
+      console.log(actualIndex);
+      console.log(questions.length - 1);
+    } else {
+      increaseIndex();
+      increaseFruitPoint(type, points);
+    }
   };
 
   return (

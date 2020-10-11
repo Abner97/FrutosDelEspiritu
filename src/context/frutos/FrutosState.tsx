@@ -10,10 +10,6 @@ import {
   providerValueInterface,
 } from "./interfaces";
 
-// const value:providerValueInterface={
-
-// }
-
 const FrutosState = (props: propsInterface) => {
   const getStoragePoint = (fruit: string): number => {
     const index = localStorage.getItem(fruit);
@@ -28,7 +24,7 @@ const FrutosState = (props: propsInterface) => {
     { fruto: "Amor", points: getStoragePoint("Amor") },
     { fruto: "Benignidad", points: getStoragePoint("Benignidad") },
     { fruto: "Bondad", points: getStoragePoint("Bondad") },
-    { fruto: "Dominio_propio", points: getStoragePoint("Dominio_propio") },
+    { fruto: "Dominio propio", points: getStoragePoint("Dominio propio") },
     { fruto: "Fe", points: getStoragePoint("Fe") },
     { fruto: "Gozo", points: getStoragePoint("Gozo") },
     { fruto: "Mansedumbre", points: getStoragePoint("Mansedumbre") },

@@ -4,13 +4,14 @@ import Home from "./components/Home";
 import Navigation from "./components/Navbar";
 import FrutosState from "./context/frutos/FrutosState";
 import QuestionsState from "./context/questions/QuestionsState";
+import Routes from "./router/Routes";
 
 function App() {
   return (
     <QuestionsState>
       <FrutosState>
         <Navigation />
-        <Home />
+        <Routes></Routes>
       </FrutosState>
     </QuestionsState>
   );

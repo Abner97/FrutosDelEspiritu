@@ -5,7 +5,7 @@ export const defaultPoints: fruitsPoints[] = [
   { fruto: "Amor", points: 0 },
   { fruto: "Benignidad", points: 0 },
   { fruto: "Bondad", points: 0 },
-  { fruto: "Dominio_propio", points: 0 },
+  { fruto: "Dominio propio", points: 0 },
   { fruto: "Fe", points: 0 },
   { fruto: "Gozo", points: 0 },
   { fruto: "Mansedumbre", points: 0 },
