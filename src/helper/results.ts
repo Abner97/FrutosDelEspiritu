@@ -12,6 +12,8 @@ export const getresults = (
   questions: Array<QuestionModel>,
   frutos: Array<fruitsPoints>
 ) => {
+  console.log(questions);
+  console.log(frutos);
   let amor = 0;
   let fe = 0;
   let benignidad = 0;
@@ -65,6 +67,7 @@ export const getresults = (
         break;
     }
   }
+
   for (let fruto of frutos) {
     switch (fruto.fruto) {
       case "Gozo":
@@ -110,6 +113,7 @@ export const getresults = (
     { fruto: "Paciencia", result: Ppaciencia },
     { fruto: "Paz", result: Ppaz },
   ];
+
   result.forEach((item) => {
     localStorage.setItem(`P${item.fruto}`, item.result.toString());
   });

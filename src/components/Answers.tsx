@@ -16,9 +16,8 @@ const Answers = () => {
 
   const onClick = (type: string, points: number) => {
     if (actualIndex == questions.length - 1) {
+      increaseIndex();
       history.push("/results");
-      console.log(actualIndex);
-      console.log(questions.length - 1);
     } else {
       increaseIndex();
       increaseFruitPoint(type, points);

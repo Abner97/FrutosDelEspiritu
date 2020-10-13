@@ -5,6 +5,7 @@ import QuestionsContext from "../context/questions/QuestionsContext";
 import { getresults, results } from "../helper/results";
 import ReactApexChart from "react-apexcharts";
 import { Col, Container, Row } from "react-bootstrap";
+import { QuestionModel } from "../models/question_model";
 
 const Results = () => {
   const questionsContext = useContext(QuestionsContext);
@@ -13,7 +14,7 @@ const Results = () => {
   const { questions } = questionsContext;
   const { frutos } = fruitsContexts;
 
-  let results: Array<results> = [
+  let resultss: Array<results> = [
     { fruto: "Amor", result: 0 },
     { fruto: "Benignidad", result: 0 },
     { fruto: "Bondad", result: 0 },
@@ -163,14 +164,24 @@ const Results = () => {
   const [chart, setChart] = useState<Ichart>(chartValue);
 
   useEffect(() => {
-    getresults(questions, frutos);
+    console.log(questions);
+    if (questions.length === 0) {
+      let questions: Array<QuestionModel> = JSON.parse(
+        localStorage.getItem("Questions")!
+      );
+      getresults(questions, frutos);
+    } else {
+      getresults(questions, frutos);
+    }
+
     //Crear array con frutos
     // con ese array mapearlo a el get item y con eso setear los promedios de esa vaina crear el objeto y pasarselo a el results
     // const index = localStorage.getItem(fruit);
-    results.forEach((item) => {
+
+    resultss.forEach((item) => {
       item.result = parseInt(localStorage.getItem(`P${item.fruto}`)!);
     });
-    results.forEach((fruto) => {
+    resultss.forEach((fruto) => {
       chartValue.options.xaxis.categories.push(fruto.fruto);
       chartValue.series[0].data.push(fruto.result);
     });
