@@ -11,3 +11,4 @@ export const DOMINIO_PROPIO = "DOMINIO PROPIO";
 export const BONDAD = "BONDAD";
 export const ADD_POINTS = "ADD_POINTS";
 export const SAVE_CREDENTIALS = "SAVE_CREDENTIALS";
+export const RESET_STATE = "RESET_STATE";

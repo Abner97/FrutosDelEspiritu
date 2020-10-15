@@ -8,8 +8,8 @@ const QuestionCard: React.FC = () => {
 
   useEffect(() => {
     getQuestions();
-    console.log(questions);
-  }, []);
+    // eslint-disable-next-line
+  });
 
   return (
     <Card className="mb-3">

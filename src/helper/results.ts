@@ -1,5 +1,4 @@
-import { fruitsInterface, fruitsPoints } from "../context/frutos/interfaces";
-import { questionInterface } from "../context/questions/interfaces";
+import { fruitsPoints } from "../context/frutos/interfaces";
 
 import { QuestionModel } from "../models/question_model";
 
@@ -12,8 +11,6 @@ export const getresults = (
   questions: Array<QuestionModel>,
   frutos: Array<fruitsPoints>
 ) => {
-  console.log(questions);
-  console.log(frutos);
   let amor = 0;
   let fe = 0;
   let benignidad = 0;

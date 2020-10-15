@@ -15,7 +15,7 @@ const Answers = () => {
   const history = useHistory();
 
   const onClick = (type: string, points: number) => {
-    if (actualIndex == questions.length - 1) {
+    if (actualIndex === questions.length - 1) {
       increaseIndex();
       history.push("/results");
     } else {
@@ -46,7 +46,4 @@ const Answers = () => {
   );
 };
 
-// const getAnswer = (answ) => {
-//   console.log(answ);
-// };
 export default Answers;

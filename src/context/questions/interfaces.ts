@@ -10,6 +10,7 @@ export interface providerValueInterface {
   getQuestions: Function;
   increaseIndex: Function;
   actualIndex: number;
+  resetStateQuestions: Function;
 }
 
 export interface actionInterface {

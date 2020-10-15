@@ -16,7 +16,7 @@ export const defaultPoints: fruitsPoints[] = [
 const preservedPoints = (): Array<fruitsPoints> => {
   defaultPoints.forEach((fruto, index) => {
     let localPoints = localStorage.getItem(fruto.fruto);
-    console.log(localPoints);
+
     if (localPoints !== null) {
       defaultPoints[index].points = parseInt(
         localStorage.getItem(fruto.fruto)!
@@ -26,13 +26,13 @@ const preservedPoints = (): Array<fruitsPoints> => {
     //fruto.points=parseInt(localStorage.getItem(fruto.fruto))?localStorage.getItem(fruto.fruto):"0";
   });
 
-  console.log("preserved " + defaultPoints);
   return defaultPoints;
 };
 
 const defaultValues: providerValueInterface = {
   frutos: preservedPoints(),
   increaseFruitPoint: () => {},
+  resetFrutosState: () => {},
 };
 
 const FruitsContext = createContext(defaultValues);

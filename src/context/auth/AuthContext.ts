@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { authInterface, providerInterface } from "./interfaces";
+import { providerInterface } from "./interfaces";
 
 const defaultValue: providerInterface = {
   name: "",

@@ -1,5 +1,5 @@
 import { questionInterface, actionInterface } from "./interfaces";
-import { GET_QUESTIONS, INCREASE_INDEX } from "../types/index";
+import { GET_QUESTIONS, INCREASE_INDEX, RESET_STATE } from "../types/index";
 
 export default (state: questionInterface, action: actionInterface) => {
   switch (action.type) {
@@ -8,7 +8,7 @@ export default (state: questionInterface, action: actionInterface) => {
         questions: action.payload,
         actualIndex: state.actualIndex,
       };
-      console.log(action.payload);
+
       return newState;
     case INCREASE_INDEX:
       const newState2: questionInterface = {
@@ -16,6 +16,12 @@ export default (state: questionInterface, action: actionInterface) => {
         actualIndex: action.actualIndexPayload,
       };
       return newState2;
+    case RESET_STATE:
+      const newState3: questionInterface = {
+        questions: state.questions,
+        actualIndex: 0,
+      };
+      return newState3;
     default:
       return state;
   }

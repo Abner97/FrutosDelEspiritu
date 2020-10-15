@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
-import { ADD_POINTS } from "../types";
-import FruitsContext, { defaultPoints } from "./FruitsContext";
+import { ADD_POINTS, RESET_STATE } from "../types";
+import FruitsContext from "./FruitsContext";
 import FrutosReducer from "./FrutosReducer";
 import {
   actionInterface,
@@ -50,6 +50,7 @@ const FrutosState = (props: propsInterface) => {
         tempFruits[index].points += points;
         savePoints(tempFruits[index].points, fruit);
       }
+      return "";
     });
 
     const action: actionInterface = {
@@ -60,9 +61,33 @@ const FrutosState = (props: propsInterface) => {
     dispatch(action);
   };
 
+  const resetFrutosState = () => {
+    const tempFruits = [
+      { fruto: "Amor", points: 0 },
+      { fruto: "Benignidad", points: 0 },
+      { fruto: "Bondad", points: 0 },
+      { fruto: "Dominio propio", points: 0 },
+      { fruto: "Fe", points: 0 },
+      { fruto: "Gozo", points: 0 },
+      { fruto: "Mansedumbre", points: 0 },
+      { fruto: "Paciencia", points: 0 },
+      { fruto: "Paz", points: 0 },
+    ];
+    const action: actionInterface = {
+      type: RESET_STATE,
+      payload: tempFruits,
+    };
+    tempFruits.map((f, index) => {
+      savePoints(0, f.fruto);
+      return null;
+    });
+    dispatch(action);
+  };
+
   const value: providerValueInterface = {
     frutos: state.frutos,
     increaseFruitPoint: AddPoint,
+    resetFrutosState,
   };
 
   return (

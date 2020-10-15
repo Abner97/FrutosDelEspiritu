@@ -7,7 +7,7 @@ import {
   propsInterface,
 } from "./interfaces";
 import { RemoteDataSource } from "../../data/remote_data/remote_data_source";
-import { GET_QUESTIONS, INCREASE_INDEX } from "../types/index";
+import { GET_QUESTIONS, INCREASE_INDEX, RESET_STATE } from "../types/index";
 import { providerValueInterface } from "./interfaces";
 
 const getStorageIndex = (): number => {
@@ -29,9 +29,20 @@ const QuestionsState = (props: propsInterface) => {
 
   const [state, dispatch] = useReducer(QuestionsReducer, initialState);
 
+  const resetStateQuestions = () => {
+    const action: actionInterface = {
+      type: RESET_STATE,
+      payload: [],
+      actualIndexPayload: 0,
+    };
+    saveIndex(0);
+    dispatch(action);
+  };
+
   const getQuestions = async () => {
     try {
       const allQuestions = await remoteDataSource.getQuestions();
+      console.log(allQuestions);
       localStorage.setItem("Questions", JSON.stringify(allQuestions));
       const action: actionInterface = {
         type: GET_QUESTIONS,
@@ -40,7 +51,7 @@ const QuestionsState = (props: propsInterface) => {
       };
       dispatch(action);
     } catch (e) {
-      console.log("ERROR getquestions questionstate");
+      alert("ERROR getquestions questionstate " + e);
     }
   };
 
@@ -64,6 +75,7 @@ const QuestionsState = (props: propsInterface) => {
     getQuestions,
     actualIndex: state.actualIndex,
     increaseIndex,
+    resetStateQuestions,
   };
 
   return (

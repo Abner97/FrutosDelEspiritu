@@ -6,10 +6,13 @@ import { getresults, results } from "../helper/results";
 import ReactApexChart from "react-apexcharts";
 import { Col, Container, Row } from "react-bootstrap";
 import { QuestionModel } from "../models/question_model";
+import StartAgainButton from "../components/StartAgainButton";
+import { AuthContext } from "../context/auth/AuthContext";
 
 const Results = () => {
   const questionsContext = useContext(QuestionsContext);
   const fruitsContexts = useContext(FruitsContext);
+  const { name } = useContext(AuthContext);
 
   const { questions } = questionsContext;
   const { frutos } = fruitsContexts;
@@ -80,7 +83,7 @@ const Results = () => {
   let chartValue: Ichart = {
     series: [
       {
-        name: "Frutos del espíritu",
+        name: `Resultados de tus frutos del Espíritu ${name}`,
         data: [],
       },
     ],
@@ -91,7 +94,7 @@ const Results = () => {
         foreColor: "#000000",
       },
       title: {
-        text: "Frutos del espíritu",
+        text: `Tus Frutos del Espíritu ${name}`,
       },
       xaxis: {
         categories: [],
@@ -164,7 +167,6 @@ const Results = () => {
   const [chart, setChart] = useState<Ichart>(chartValue);
 
   useEffect(() => {
-    console.log(questions);
     if (questions.length === 0) {
       let questions: Array<QuestionModel> = JSON.parse(
         localStorage.getItem("Questions")!
@@ -187,17 +189,23 @@ const Results = () => {
     });
     setChart(chartValue);
     window.dispatchEvent(new Event("resize"));
+    // eslint-disable-next-line
   }, []);
 
   return (
     <Container fluid className="w-100 h-full align-content-center">
-      <Row className="justify-content-center h-100 ">
+      <Row className="justify-content-center  ">
         <Col lg={8} md={6} sm={12} xs={12} className="my-4 ">
           <ReactApexChart
             series={chart.series}
             options={chart.options}
             type="radar"
           />
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col lg={8} md={6} sm={8} xs={8}>
+          <StartAgainButton></StartAgainButton>
         </Col>
       </Row>
     </Container>

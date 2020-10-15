@@ -3,7 +3,7 @@ import { AuthContext } from "./AuthContext";
 import authReducer from "./AuthReducer";
 import { SAVE_CREDENTIALS } from "../types/";
 import { authInterface, providerInterface } from "./interfaces";
-import { Alert } from "react-bootstrap";
+
 interface AuthStateProps {
   children: React.ReactNode;
 }
@@ -12,7 +12,6 @@ const AuthState: React.FC<AuthStateProps> = ({ children }: AuthStateProps) => {
   const initialState: authInterface = {
     email: localStorage.getItem("email") ? localStorage.getItem("email")! : "",
     name: localStorage.getItem("name") ? localStorage.getItem("name")! : "",
-
     cargando: true,
   };
 

@@ -6,6 +6,7 @@ const defaultValue: providerValueInterface = {
   getQuestions: () => {},
   actualIndex: 0,
   increaseIndex: () => {},
+  resetStateQuestions: () => {},
 };
 
 const QuestionsContext = createContext(defaultValue);

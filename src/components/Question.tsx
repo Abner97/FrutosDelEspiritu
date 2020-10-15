@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import Answers from "./Answers";
 import QuestionCard from "./QuestionCard";
 import { Row, Col } from "react-bootstrap";

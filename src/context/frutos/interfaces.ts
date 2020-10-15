@@ -16,6 +16,7 @@ export interface fruitsInterface {
 export interface providerValueInterface {
   frutos: Array<fruitsPoints>;
   increaseFruitPoint: Function;
+  resetFrutosState: Function;
 }
 
 export interface actionInterface {

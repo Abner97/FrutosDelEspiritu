@@ -9,6 +9,7 @@ export default (state: authInterface, action: actionInterface) => {
         name: action.payload.name,
         cargando: false,
       };
+
       return newState;
     default:
       return state;

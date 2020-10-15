@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Route, Redirect, RouteProps } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";
 
 interface RutaPrivadaProps {
@@ -18,8 +18,7 @@ const RutaPrivada = ({ Component, path, ...props }: RutaPrivadaProps) => {
   //   email = localStorage.getItem("Email");
   //   //eslint-disable-next-line
   // }, []);
-  console.log(autenticado);
-  console.log(cargando);
+
   return (
     <Route
       exact
