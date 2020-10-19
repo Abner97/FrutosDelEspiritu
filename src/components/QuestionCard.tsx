@@ -17,7 +17,10 @@ const QuestionCard: React.FC = () => {
   const { questions, getQuestions, actualIndex } = questionsContext;
 
   useEffect(() => {
-    getQuestions();
+    (async function fetchQuestions() {
+      await getQuestions();
+    })();
+
     // eslint-disable-next-line
   }, []);
 

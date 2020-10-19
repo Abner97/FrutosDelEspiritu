@@ -103,7 +103,7 @@ export const getresults = (
     { fruto: "Amor", result: Pamor },
     { fruto: "Benignidad", result: Pbenignidad },
     { fruto: "Bondad", result: Pbondad },
-    { fruto: "Dominio Propio", result: PDominioPropio },
+    { fruto: "Dominio propio", result: PDominioPropio },
     { fruto: "Fe", result: Pfe },
     { fruto: "Gozo", result: Pgozo },
     { fruto: "Mansedumbre", result: Pmansedumbre },

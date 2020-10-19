@@ -3,7 +3,7 @@ import { providerValueInterface } from "./interfaces";
 
 const defaultValue: providerValueInterface = {
   questions: [],
-  getQuestions: () => {},
+  getQuestions: async () => {},
   actualIndex: 0,
   increaseIndex: () => {},
   resetStateQuestions: () => {},

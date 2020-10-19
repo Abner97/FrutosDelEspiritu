@@ -4,7 +4,7 @@ import FruitsContext from "../context/frutos/FruitsContext";
 import QuestionsContext from "../context/questions/QuestionsContext";
 import { getresults, results } from "../helper/results";
 import ReactApexChart from "react-apexcharts";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Table } from "react-bootstrap";
 import { QuestionModel } from "../models/question_model";
 import StartAgainButton from "../components/StartAgainButton";
 import { AuthContext } from "../context/auth/AuthContext";
@@ -21,7 +21,7 @@ const Results = () => {
     { fruto: "Amor", result: 0 },
     { fruto: "Benignidad", result: 0 },
     { fruto: "Bondad", result: 0 },
-    { fruto: "Dominio Propio", result: 0 },
+    { fruto: "Dominio propio", result: 0 },
     { fruto: "Fe", result: 0 },
     { fruto: "Gozo", result: 0 },
     { fruto: "Mansedumbre", result: 0 },
@@ -165,6 +165,7 @@ const Results = () => {
   };
 
   const [chart, setChart] = useState<Ichart>(chartValue);
+  const [results, setResults] = useState(resultss);
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -187,13 +188,38 @@ const Results = () => {
       chartValue.options.xaxis.categories.push(fruto.fruto);
       chartValue.series[0].data.push(fruto.result);
     });
+    setResults(resultss);
     setChart(chartValue);
     window.dispatchEvent(new Event("resize"));
     // eslint-disable-next-line
   }, []);
 
+  // function getResult(fruto: fruitsPoints, index: number) {
+  //   setResults([...results, localStorage.getItem(`P${fruto.fruto}`)!]);
+  //   return results[index];
+  // }
+
   return (
     <Container fluid className="w-100 h-full align-content-center">
+      <Row>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Fruto</th>
+              <th>Puntuación</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((fruto, index) => (
+              <tr key={index}>
+                <td>{fruto.fruto}</td>
+                {/* <td>{localStorage.getItem(`P${fruto.fruto}`)!}</td> */}
+                <td>{fruto.result}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Row>
       <Row className="justify-content-center  ">
         <Col lg={8} md={6} sm={12} xs={12} className="my-4 ">
           <ReactApexChart
@@ -206,6 +232,12 @@ const Results = () => {
       <Row className="justify-content-center">
         <Col lg={8} md={6} sm={8} xs={8}>
           <StartAgainButton></StartAgainButton>
+        </Col>
+        <Col>
+          {/* <PayPalButton
+            currency="USD"
+            options={{ clientId: "sb56AHJTZZYRWWE", currency: "USD" }}
+          ></PayPalButton> */}
         </Col>
       </Row>
     </Container>

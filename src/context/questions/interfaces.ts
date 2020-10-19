@@ -7,7 +7,7 @@ export interface questionInterface {
 
 export interface providerValueInterface {
   questions: Array<QuestionModel>;
-  getQuestions: Function;
+  getQuestions: () => Promise<any>;
   increaseIndex: Function;
   actualIndex: number;
   resetStateQuestions: Function;
