@@ -1,19 +1,28 @@
 import React, { useEffect } from "react";
+
+//Components
+import ReactApexChart from "react-apexcharts";
+import StartAgainButton from "../components/StartAgainButton";
+import { Col, Container, Row, Table } from "react-bootstrap";
+
+//State
 import { useContext, useState } from "react";
 import FruitsContext from "../context/frutos/FruitsContext";
 import QuestionsContext from "../context/questions/QuestionsContext";
+
+//Helpers
+// eslint-disable-next-line
 import { getresults, results } from "../helper/results";
-import ReactApexChart from "react-apexcharts";
-import { Col, Container, Row, Table } from "react-bootstrap";
+
+//Models
 import { QuestionModel } from "../models/question_model";
-import StartAgainButton from "../components/StartAgainButton";
 import { AuthContext } from "../context/auth/AuthContext";
 
 const Results = () => {
+  //State Handling
   const questionsContext = useContext(QuestionsContext);
   const fruitsContexts = useContext(FruitsContext);
   const { name } = useContext(AuthContext);
-
   const { questions } = questionsContext;
   const { frutos } = fruitsContexts;
 

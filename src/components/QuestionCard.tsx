@@ -1,53 +1,79 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+//Components
 import { Card } from "react-bootstrap";
+import { useTransition, animated } from "react-spring";
+
+//State
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../context/auth/AuthContext";
-import FruitsContext from "../context/frutos/FruitsContext";
 import QuestionsContext from "../context/questions/QuestionsContext";
 
 const QuestionCard: React.FC = () => {
   const questionsContext = useContext(QuestionsContext);
-  const authContext = useContext(AuthContext);
-
-  const { saveCredentials } = authContext;
-
-  const frutosContext = useContext(FruitsContext);
 
   const history = useHistory();
   const { questions, getQuestions, actualIndex } = questionsContext;
+  const [loading, setLoading] = useState(true);
+
+  const transitions = useTransition(actualIndex, (p) => p, {
+    from: {
+      opacity: 0,
+      transform: "translate3d(100%,0,0)",
+      position: "absolute",
+    },
+    enter: {
+      opacity: 1,
+      transform: "translate3d(0%,0,0)",
+      position: "relative",
+    },
+    leave: {
+      opacity: 0,
+      transform: "translate3d(-50%,0,0)",
+      position: "absolute",
+    },
+  });
 
   useEffect(() => {
-    (async function fetchQuestions() {
-      await getQuestions();
-    })();
+    getQuestions().then(() => {
+      setLoading(false);
+    });
 
+    if (actualIndex > 29) {
+      console.log(actualIndex);
+      history.push("/results");
+    }
     // eslint-disable-next-line
   }, []);
 
-  const startAgain = () => {
-    localStorage.clear();
-    frutosContext.resetFrutosState();
-    questionsContext.resetStateQuestions();
-    saveCredentials("", "");
-    history.push("/");
-  };
+  // const startAgain = () => {
+  //   localStorage.clear();
+  //   frutosContext.resetFrutosState();
+  //   questionsContext.resetStateQuestions();
+  //   saveCredentials("", "");
+  //   history.push("/");
+  // };
 
-  function showQuestions() {
-    if (questions.length !== 0 && actualIndex <= questions.length - 1) {
-      return questions[actualIndex].question;
-    } else {
-      console.log("aqui toy");
-      startAgain();
-      return <h1>No question available</h1>;
-    }
-  }
+  // function showQuestions() {
+  //   if (questions.length !== 0 && actualIndex <= questions.length - 1) {
+  //     return questions[actualIndex].question;
+  //   } else {
+  //     console.log("aqui toy");
+  //     startAgain();
+  //   }
+  // }
 
   return (
-    <Card className="mb-3">
-      <Card.Body style={{ background: "#90c73f" }}>
-        <h2>{showQuestions()}</h2>
-      </Card.Body>
-    </Card>
+    <>
+      {transitions.map(({ props, key }) => (
+        <animated.div key={key} style={props}>
+          <Card className="mb-3">
+            <Card.Body style={{ background: "#90c73f" }}>
+              <h2>{loading ? "LOADING" : questions[actualIndex].question}</h2>
+            </Card.Body>
+          </Card>
+        </animated.div>
+      ))}
+    </>
   );
 };
 

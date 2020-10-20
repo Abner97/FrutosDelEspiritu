@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
+
+//Components
 import { Button } from "react-bootstrap";
+
+//State
 import { useHistory } from "react-router-dom";
 import FruitsContext from "../context/frutos/FruitsContext";
 import QuestionsContext from "../context/questions/QuestionsContext";
 import { AuthContext } from "../context/auth/AuthContext";
 
-const StartAgainButton = () => {
+const StartAgainButton: React.FC = () => {
+  //State Handling
   const authContext = useContext(AuthContext);
-
   const { saveCredentials } = authContext;
-
   const frutosContext = useContext(FruitsContext);
   const questionsContext = useContext(QuestionsContext);
   const history = useHistory();

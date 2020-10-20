@@ -1,14 +1,22 @@
 import React, { useState, useContext } from "react";
+
+//Components
 import { Button, Col } from "react-bootstrap";
+
+//Helpers
 import allAnswers from "../data/answers/all_answers";
+
+//State
 import QuestionsContext from "../context/questions/QuestionsContext";
 import FruitsContext from "../context/frutos/FruitsContext";
 import { useHistory } from "react-router-dom";
+
 const Answers = () => {
   const [answers] = useState(allAnswers);
+
+  //Context
   const questionsContext = useContext(QuestionsContext);
   const fruitsContexts = useContext(FruitsContext);
-
   const { increaseIndex, questions, actualIndex } = questionsContext;
   const { increaseFruitPoint } = fruitsContexts;
 

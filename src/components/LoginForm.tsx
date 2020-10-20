@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 
+//Components
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import {
   Button,
@@ -8,7 +9,11 @@ import {
   FormGroup,
   FormLabel,
 } from "react-bootstrap";
+
+//Helpers
 import * as Yup from "yup";
+
+//State
 import { AuthContext } from "../context/auth/AuthContext";
 import { useHistory } from "react-router-dom";
 
@@ -56,7 +61,7 @@ const LoginForm = () => {
             values: LoginValues,
             { setSubmitting }: FormikHelpers<LoginValues>
           ) => {
-            setSubmitting(false);
+            setSubmitting(true);
             sendCredentials(values.name, values.email);
           }}
         >
