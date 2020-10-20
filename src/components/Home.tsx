@@ -8,7 +8,7 @@ import styled from "styled-components";
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 import bottom_right_image from "../assets/images/logo_without_label.png";
-
+import bottom_left_image from "../assets/images/A1.png";
 //Styled Components
 const StyledContainer = styled.div`
   background: white;
@@ -29,6 +29,18 @@ const RightBottomImage = styled.img`
   width: 20%;
 `;
 
+const LeftBottomImage = styled.img`
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 20%;
+`;
+
+
+
+
+
+
 const Home: React.FC = () => {
   return (
     <>
@@ -38,6 +50,7 @@ const Home: React.FC = () => {
         </Container>
         <LeftTopImage src={top_left_image} />
         <RightBottomImage src={bottom_right_image} />
+        <LeftBottomImage src={bottom_left_image} />
       </StyledContainer>
     </>
   );

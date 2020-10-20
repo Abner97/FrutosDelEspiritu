@@ -50,7 +50,10 @@ const LoginForm = () => {
 
   return (
     <Card>
-      <Card.Body>
+      <Card.Body style={{ background: "#118a13" }} className={"border rounded-lg"}>
+        <h3 className={"d-flex justify-content-center  align-items-center font-weight-bold text-white "}>
+          REGISTRA TUS DATOS
+        </h3>
         <Formik
           initialValues={{
             name: "",
@@ -66,7 +69,7 @@ const LoginForm = () => {
           }}
         >
           {({ errors, touched }) => (
-            <Form>
+            <Form className={" text-white text-lg"}>
               <Field name="name">
                 {({ field, ...props }: FieldProps) => (
                   <FormGroup controlId="name">
@@ -97,7 +100,7 @@ const LoginForm = () => {
               {errors.name && touched.name ? (
                 <div style={{ color: "red" }}>{errors.email}</div>
               ) : null}
-              <Button variant="primary" type="submit" className="mt-2">
+              <Button variant="info" type="submit" className="mt-2">
                 Comenzar test
               </Button>
             </Form>

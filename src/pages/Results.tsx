@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import StartAgainButton from "../components/StartAgainButton";
 import { Col, Container, Row, Table } from "react-bootstrap";
-
+import styled from "styled-components";
 //State
 import { useContext, useState } from "react";
 import FruitsContext from "../context/frutos/FruitsContext";
@@ -17,6 +17,49 @@ import { getresults, results } from "../helper/results";
 //Models
 import { QuestionModel } from "../models/question_model";
 import { AuthContext } from "../context/auth/AuthContext";
+
+//Assets
+import top_left_image from "../assets/images/toque_gracia_logo.svg";
+import bottom_right_image from "../assets/images/logo_without_label.png";
+import bottom_left_image from "../assets/images/A1.png";
+
+
+const StyledContainer = styled.div`
+  background: white;
+  z-index: -2;
+`;
+
+const LeftTopImage = styled.img`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 10%;
+`;
+
+const RightBottomImage = styled.img`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 20%;
+`;
+
+const LeftBottomImage = styled.img`
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 20%;
+`;
+
+
+
+
+
+
+
+
+
+
+
 
 const Results = () => {
   //State Handling
@@ -209,8 +252,10 @@ const Results = () => {
   // }
 
   return (
-    <Container fluid className="w-100 h-full align-content-center">
-      <Row>
+    <StyledContainer className="d-flex h-100 justify-content-center  align-items-center">
+    <Container className="w-100 h-full align-content-center justify-content-center ">
+      <Row className="justify-content-center ">
+        <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -222,15 +267,13 @@ const Results = () => {
             {results.map((fruto, index) => (
               <tr key={index}>
                 <td>{fruto.fruto}</td>
-                {/* <td>{localStorage.getItem(`P${fruto.fruto}`)!}</td> */}
                 <td>{fruto.result}</td>
               </tr>
             ))}
           </tbody>
         </Table>
-      </Row>
-      <Row className="justify-content-center  ">
-        <Col lg={8} md={6} sm={12} xs={12} className="my-4 ">
+        </Col>
+        <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
           <ReactApexChart
             series={chart.series}
             options={chart.options}
@@ -238,9 +281,9 @@ const Results = () => {
           />
         </Col>
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center align-content-center" >
         <Col lg={8} md={6} sm={8} xs={8}>
-          <StartAgainButton></StartAgainButton>
+          <StartAgainButton/>
         </Col>
         <Col>
           {/* <PayPalButton
@@ -250,6 +293,10 @@ const Results = () => {
         </Col>
       </Row>
     </Container>
+    <LeftTopImage src={top_left_image} />
+        <RightBottomImage src={bottom_right_image} />
+        <LeftBottomImage src={bottom_left_image} />
+    </StyledContainer>
   );
 };
 
