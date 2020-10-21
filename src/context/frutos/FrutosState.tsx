@@ -45,7 +45,7 @@ const FrutosState = (props: propsInterface) => {
   const AddPoint = (fruit: string, points: number) => {
     const tempFruits = state.frutos;
 
-    tempFruits.find((f, index) => {
+    tempFruits.map((f, index) => {
       if (f.fruto === fruit) {
         tempFruits[index].points += points;
         savePoints(tempFruits[index].points, fruit);

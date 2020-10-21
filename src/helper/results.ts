@@ -35,6 +35,7 @@ export const getresults = (
     switch (question.type) {
       case "Gozo":
         gozo++;
+
         break;
       case "Amor":
         amor++;
@@ -64,35 +65,37 @@ export const getresults = (
         break;
     }
   }
-
+  console.log(gozo);
   for (let fruto of frutos) {
     switch (fruto.fruto) {
       case "Gozo":
-        Pgozo = fruto.points / gozo;
+        Pgozo = parseFloat((fruto.points / gozo).toPrecision(3));
         break;
       case "Amor":
-        Pamor = fruto.points / amor;
+        Pamor = parseFloat((fruto.points / amor).toPrecision(3));
         break;
       case "Benignidad":
-        Pbenignidad = fruto.points / benignidad;
+        Pbenignidad = parseFloat((fruto.points / benignidad).toPrecision(3));
         break;
       case "Bondad":
-        Pbondad = fruto.points / bondad;
+        Pbondad = parseFloat((fruto.points / bondad).toPrecision(3));
         break;
       case "Dominio propio":
-        PDominioPropio = fruto.points / dominioPropio;
+        PDominioPropio = parseFloat(
+          (fruto.points / dominioPropio).toPrecision(3)
+        );
         break;
       case "Fe":
-        Pfe = fruto.points / fe;
+        Pfe = parseFloat((fruto.points / fe).toPrecision(3));
         break;
       case "Mansedumbre":
-        Pmansedumbre = fruto.points / mansedumbre;
+        Pmansedumbre = parseFloat((fruto.points / mansedumbre).toPrecision(3));
         break;
       case "Paciencia":
-        Ppaciencia = fruto.points / paciencia;
+        Ppaciencia = parseFloat((fruto.points / paciencia).toPrecision(3));
         break;
       case "Paz":
-        Ppaz = fruto.points / paz;
+        Ppaz = parseFloat((fruto.points / paz).toPrecision(3));
         break;
       default:
         break;

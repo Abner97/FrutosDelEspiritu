@@ -23,7 +23,6 @@ import top_left_image from "../assets/images/toque_gracia_logo.svg";
 import bottom_right_image from "../assets/images/logo_without_label.png";
 import bottom_left_image from "../assets/images/A1.png";
 
-
 const StyledContainer = styled.div`
   background: white;
   z-index: -2;
@@ -49,17 +48,6 @@ const LeftBottomImage = styled.img`
   left: 0px;
   width: 20%;
 `;
-
-
-
-
-
-
-
-
-
-
-
 
 const Results = () => {
   //State Handling
@@ -218,6 +206,7 @@ const Results = () => {
 
   const [chart, setChart] = useState<Ichart>(chartValue);
   const [results, setResults] = useState(resultss);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -234,13 +223,16 @@ const Results = () => {
     // const index = localStorage.getItem(fruit);
 
     resultss.forEach((item) => {
-      item.result = parseInt(localStorage.getItem(`P${item.fruto}`)!);
+      item.result = parseFloat(localStorage.getItem(`P${item.fruto}`)!);
     });
+    console.log(resultss);
     resultss.forEach((fruto) => {
       chartValue.options.xaxis.categories.push(fruto.fruto);
       chartValue.series[0].data.push(fruto.result);
     });
     setResults(resultss);
+    setShow(true);
+    console.log(results);
     setChart(chartValue);
     window.dispatchEvent(new Event("resize"));
     // eslint-disable-next-line
@@ -251,51 +243,57 @@ const Results = () => {
   //   return results[index];
   // }
 
+  const [showmodal, setShowModal] = useState(false);
   return (
     <StyledContainer className="d-flex h-100 justify-content-center  align-items-center">
-    <Container className="w-100 h-full align-content-center justify-content-center ">
-      <Row className="justify-content-center ">
-        <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Fruto</th>
-              <th>Puntuación</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map((fruto, index) => (
-              <tr key={index}>
-                <td>{fruto.fruto}</td>
-                <td>{fruto.result}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        </Col>
-        <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
-          <ReactApexChart
-            series={chart.series}
-            options={chart.options}
-            type="radar"
-          />
-        </Col>
-      </Row>
-      <Row className="justify-content-center align-content-center" >
-        <Col lg={8} md={6} sm={8} xs={8}>
-          <StartAgainButton/>
-        </Col>
-        <Col>
-          {/* <PayPalButton
+      <Container className="w-100 h-full align-content-center justify-content-center ">
+        <Row className="justify-content-center ">
+          <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Fruto</th>
+                  <th>Puntuación</th>
+                </tr>
+              </thead>
+              <tbody>
+                {show
+                  ? results.map(({ fruto, result }, index) => (
+                      <tr key={index}>
+                        <td>
+                          {fruto}
+                          {showmodal && <p>hellosito</p>}
+                        </td>
+                        <td>{result}</td>
+                      </tr>
+                    ))
+                  : null}
+              </tbody>
+            </Table>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
+            <ReactApexChart
+              series={chart.series}
+              options={chart.options}
+              type="radar"
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-center align-content-center">
+          <Col lg={8} md={6} sm={8} xs={8}>
+            <StartAgainButton />
+          </Col>
+          <Col>
+            {/* <PayPalButton
             currency="USD"
             options={{ clientId: "sb56AHJTZZYRWWE", currency: "USD" }}
           ></PayPalButton> */}
-        </Col>
-      </Row>
-    </Container>
-    <LeftTopImage src={top_left_image} />
-        <RightBottomImage src={bottom_right_image} />
-        <LeftBottomImage src={bottom_left_image} />
+          </Col>
+        </Row>
+      </Container>
+      <LeftTopImage src={top_left_image} />
+      <RightBottomImage src={bottom_right_image} />
+      <LeftBottomImage src={bottom_left_image} />
     </StyledContainer>
   );
 };

@@ -1,0 +1,9 @@
+export const DAMOR = "AMOR";
+export const DGOZO = "GOZO";
+export const DPAZ = "PAZ";
+export const DPACIENCIA = "PACIENCIA";
+export const DBENIGNIDAD = "BENIGNIDAD";
+export const DFE = "FE";
+export const DMANSEDUMBRE = "MANSEDUMBRE";
+export const DDOMINIO_PROPIO = "DOMINIO PROPIO";
+export const DBONDAD = "BONDAD";

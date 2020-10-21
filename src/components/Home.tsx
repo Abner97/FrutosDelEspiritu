@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 //Components
 import { Container } from "react-bootstrap";
@@ -9,6 +9,8 @@ import styled from "styled-components";
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 import bottom_right_image from "../assets/images/logo_without_label.png";
 import bottom_left_image from "../assets/images/A1.png";
+import QuestionsContext from "../context/questions/QuestionsContext";
+import { useHistory } from "react-router-dom";
 //Styled Components
 const StyledContainer = styled.div`
   background: white;
@@ -36,12 +38,16 @@ const LeftBottomImage = styled.img`
   width: 20%;
 `;
 
-
-
-
-
-
 const Home: React.FC = () => {
+  const { actualIndex, questions } = useContext(QuestionsContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (actualIndex > questions.length - 1) {
+      history.push("/results");
+    }
+  }, []);
+
   return (
     <>
       <StyledContainer className="d-flex h-100 justify-content-center  align-items-center">
