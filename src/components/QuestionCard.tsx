@@ -31,6 +31,11 @@ const QuestionCard: React.FC = () => {
       transform: "translate3d(-50%,0,0)",
       position: "absolute",
     },
+    config: {
+      mass: 10,
+      friction: 100,
+      tension: 600,
+    },
   });
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const QuestionCard: React.FC = () => {
       setLoading(false);
     });
 
-    if (actualIndex > 29) {
+    if (actualIndex > 28) {
       console.log(actualIndex);
       history.push("/results");
     }

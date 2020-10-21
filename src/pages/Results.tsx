@@ -5,6 +5,8 @@ import ReactApexChart from "react-apexcharts";
 import StartAgainButton from "../components/StartAgainButton";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 //State
 import { useContext, useState } from "react";
 import FruitsContext from "../context/frutos/FruitsContext";
@@ -207,6 +209,8 @@ const Results = () => {
   const [chart, setChart] = useState<Ichart>(chartValue);
   const [results, setResults] = useState(resultss);
   const [show, setShow] = useState(false);
+  const [showDescription, setShowDescription] = useState<Array<boolean>>([]);
+  const tempArray: Array<boolean> = [];
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -223,16 +227,17 @@ const Results = () => {
     // const index = localStorage.getItem(fruit);
 
     resultss.forEach((item) => {
+      tempArray.push(false);
+      setShowDescription(tempArray);
       item.result = parseFloat(localStorage.getItem(`P${item.fruto}`)!);
     });
-    console.log(resultss);
+
     resultss.forEach((fruto) => {
       chartValue.options.xaxis.categories.push(fruto.fruto);
       chartValue.series[0].data.push(fruto.result);
     });
     setResults(resultss);
     setShow(true);
-    console.log(results);
     setChart(chartValue);
     window.dispatchEvent(new Event("resize"));
     // eslint-disable-next-line
@@ -243,7 +248,10 @@ const Results = () => {
   //   return results[index];
   // }
 
-  const [showmodal, setShowModal] = useState(false);
+  function changeArrow(index: number, value: boolean) {
+    tempArray[index] = value;
+    setShowDescription(tempArray);
+  }
   return (
     <StyledContainer className="d-flex h-100 justify-content-center  align-items-center">
       <Container className="w-100 h-full align-content-center justify-content-center ">
@@ -261,8 +269,27 @@ const Results = () => {
                   ? results.map(({ fruto, result }, index) => (
                       <tr key={index}>
                         <td>
-                          {fruto}
-                          {showmodal && <p>hellosito</p>}
+                          <Container fluid>
+                            <Row>
+                              <Col lg={10} xl={10} xs={10} sm={10}>
+                                <b>{fruto}</b>
+                              </Col>
+                              <Col lg={10} xl={2} xs={2} sm={2}>
+                                {showDescription[index] ? (
+                                  <FontAwesomeIcon
+                                    icon={faAngleUp}
+                                    onClick={() => changeArrow(index, false)}
+                                  />
+                                ) : (
+                                  <FontAwesomeIcon
+                                    icon={faAngleDown}
+                                    onClick={() => changeArrow(index, true)}
+                                  />
+                                )}
+                              </Col>
+                            </Row>
+                            {showDescription[index] && "K pex"}
+                          </Container>
                         </td>
                         <td>{result}</td>
                       </tr>
