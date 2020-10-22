@@ -24,10 +24,12 @@ import { AuthContext } from "../context/auth/AuthContext";
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 import bottom_right_image from "../assets/images/logo_without_label.png";
 import bottom_left_image from "../assets/images/A1.png";
+import { DES_AMOR, DES_BENIGNIDAD, DES_BONDAD, DES_DOMINIO_PROPIO, DES_FE, DES_GOZO, DES_MANSEDUMBRE, DES_PACIENCIA, DES_PAZ } from '../data/answers/all_descriptions';
 
 const StyledContainer = styled.div`
   background: white;
   z-index: -2;
+  padding-top:8%
 `;
 
 const LeftTopImage = styled.img`
@@ -51,6 +53,15 @@ const LeftBottomImage = styled.img`
   width: 20%;
 `;
 
+const DescriptionText = styled.p`
+  font-size: 14px;
+  font-style: italic;
+  color:#757373;
+  margin-top: 20px
+`;
+
+
+
 const Results = () => {
   //State Handling
   const questionsContext = useContext(QuestionsContext);
@@ -60,15 +71,15 @@ const Results = () => {
   const { frutos } = fruitsContexts;
 
   let resultss: Array<results> = [
-    { fruto: "Amor", result: 0 },
-    { fruto: "Benignidad", result: 0 },
-    { fruto: "Bondad", result: 0 },
-    { fruto: "Dominio propio", result: 0 },
-    { fruto: "Fe", result: 0 },
-    { fruto: "Gozo", result: 0 },
-    { fruto: "Mansedumbre", result: 0 },
-    { fruto: "Paciencia", result: 0 },
-    { fruto: "Paz", result: 0 },
+    { fruto: "Amor", result: 0 , description:DES_AMOR},
+    { fruto: "Benignidad", result: 0,description:DES_BENIGNIDAD },
+    { fruto: "Bondad", result: 0,description:DES_BONDAD },
+    { fruto: "Dominio propio", result: 0,description:DES_DOMINIO_PROPIO },
+    { fruto: "Fe", result: 0,description:DES_FE },
+    { fruto: "Gozo", result: 0,description:DES_GOZO },
+    { fruto: "Mansedumbre", result: 0,description:DES_MANSEDUMBRE },
+    { fruto: "Paciencia", result: 0,description:DES_PACIENCIA },
+    { fruto: "Paz", result: 0,description:DES_PAZ },
   ];
 
   interface series {
@@ -221,7 +232,7 @@ const Results = () => {
     } else {
       getresults(questions, frutos);
     }
-
+      //TODO DELETE
     //Crear array con frutos
     // con ese array mapearlo a el get item y con eso setear los promedios de esa vaina crear el objeto y pasarselo a el results
     // const index = localStorage.getItem(fruit);
@@ -243,6 +254,7 @@ const Results = () => {
     // eslint-disable-next-line
   }, []);
 
+  //TODO DELETE
   // function getResult(fruto: fruitsPoints, index: number) {
   //   setResults([...results, localStorage.getItem(`P${fruto.fruto}`)!]);
   //   return results[index];
@@ -253,8 +265,8 @@ const Results = () => {
     setShowDescription(tempArray);
   }
   return (
-    <StyledContainer className="d-flex h-100 justify-content-center  align-items-center">
-      <Container className="w-100 h-full align-content-center justify-content-center ">
+    <StyledContainer className="h-100">
+      <Container className="w-100 h-full  align-content-center justify-content-center ">
         <Row className="justify-content-center ">
           <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
             <Table striped bordered hover>
@@ -266,7 +278,7 @@ const Results = () => {
               </thead>
               <tbody>
                 {show
-                  ? results.map(({ fruto, result }, index) => (
+                  ? results.map(({ fruto, result, description }, index) => (
                       <tr key={index}>
                         <td>
                           <Container fluid>
@@ -288,7 +300,7 @@ const Results = () => {
                                 )}
                               </Col>
                             </Row>
-                            {showDescription[index] && "K pex"}
+                            {showDescription[index] && (<DescriptionText>{description}</DescriptionText>)}
                           </Container>
                         </td>
                         <td>{result}</td>
@@ -311,6 +323,7 @@ const Results = () => {
             <StartAgainButton />
           </Col>
           <Col>
+            
             {/* <PayPalButton
             currency="USD"
             options={{ clientId: "sb56AHJTZZYRWWE", currency: "USD" }}
