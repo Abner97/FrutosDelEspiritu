@@ -144,7 +144,7 @@ const Results = () => {
   let chartValue: Ichart = {
     series: [
       {
-        name: `Resultados de tus frutos del Espíritu ${name}`,
+        name: `Resultados de tu fruto del Espíritu ${name}`,
         data: [],
       },
     ],
@@ -155,7 +155,7 @@ const Results = () => {
         foreColor: "#000000",
       },
       title: {
-        text: `Tus Frutos del Espíritu ${name}`,
+        text: `Tu Fruto del Espíritu ${name}`,
       },
       xaxis: {
         categories: [],
