@@ -40,17 +40,24 @@ const LeftTopImage = styled.img`
 `;
 
 const RightBottomImage = styled.img`
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 20%;
+  
+  width: 0px;
+  @media (min-width: 800px) {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 20%;
+  }
 `;
 
 const LeftBottomImage = styled.img`
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 20%;
+  width:0px;
+  @media (min-width: 800px) {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 20%;
+  }
 `;
 
 const DescriptionText = styled.p`
@@ -58,6 +65,7 @@ const DescriptionText = styled.p`
   font-style: italic;
   color:#757373;
   margin-top: 20px
+  
 `;
 
 

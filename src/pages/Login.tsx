@@ -22,6 +22,7 @@ const RightBottomImage = styled.img`
   bottom: 0px;
   right: 0px;
   width: 20%;
+  
 `;
 
 const LeftBottomImage = styled.img`
