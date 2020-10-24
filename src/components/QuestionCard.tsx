@@ -72,8 +72,9 @@ const QuestionCard: React.FC = () => {
       {transitions.map(({ props, key }) => (
         <animated.div key={key} style={props}>
           <Card className="mb-3">
-            <Card.Body style={{ background: "#90c73f" }}>
-              <h2>{loading ? "LOADING" : questions[actualIndex].question}</h2>
+            <Card.Body style={{ background: "#90c73f",textAlign:"center" }} >
+              <h1>{loading ? "LOADING" : questions[actualIndex].question}</h1>
+             
             </Card.Body>
           </Card>
         </animated.div>

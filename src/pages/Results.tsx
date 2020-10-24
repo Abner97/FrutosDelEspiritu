@@ -39,23 +39,23 @@ const LeftTopImage = styled.img`
   width: 10%;
 `;
 
-const RightBottomImage = styled.img`
+// const RightBottomImage = styled.img`
   
-  width: 0px;
-  @media (min-width: 800px) {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    width: 20%;
-  }
-`;
+//   width: 0px;
+//   @media (min-width: 800px) {
+//     position: absolute;
+//     bottom: 0px;
+//     right: 0px;
+//     width: 20%;
+//   }
+// `;
 
 const LeftBottomImage = styled.img`
   width:0px;
   @media (min-width: 800px) {
     position: absolute;
     bottom: 0px;
-    left: 0px;
+    right: 0px;
     width: 20%;
   }
 `;
@@ -340,7 +340,7 @@ const Results = () => {
         </Row>
       </Container>
       <LeftTopImage src={top_left_image} />
-      <RightBottomImage src={bottom_right_image} />
+     
       <LeftBottomImage src={bottom_left_image} />
     </StyledContainer>
   );

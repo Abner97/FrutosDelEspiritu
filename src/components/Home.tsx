@@ -20,14 +20,14 @@ const LeftTopImage = styled.img`
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 10%;
+  width: 16%;
 `;
 
 const RightBottomImage = styled.img`
   position: absolute;
   bottom: 0px;
   right: 0px;
-  width: 20%;
+  width: 8%;
 `;
 
 const LeftBottomImage = styled.img`

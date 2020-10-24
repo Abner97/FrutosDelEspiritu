@@ -46,9 +46,10 @@ const Answers = () => {
                 onClick(questions[actualIndex].type, answer.points)
               }
             >
-              {answer.answer}
-            </Button>
+             <b>{answer.answer}
+             </b>             </Button>
           </Col>
+          
         );
       })}
     </>
