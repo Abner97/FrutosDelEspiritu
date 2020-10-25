@@ -22,7 +22,7 @@ import { AuthContext } from "../context/auth/AuthContext";
 
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
-import bottom_right_image from "../assets/images/logo_without_label.png";
+//import bottom_right_image from "../assets/images/logo_without_label.png";
 import bottom_left_image from "../assets/images/A1.png";
 import { DES_AMOR, DES_BENIGNIDAD, DES_BONDAD, DES_DOMINIO_PROPIO, DES_FE, DES_GOZO, DES_MANSEDUMBRE, DES_PACIENCIA, DES_PAZ } from '../data/answers/all_descriptions';
 
@@ -280,8 +280,8 @@ const Results = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Fruto</th>
-                  <th>Puntuación</th>
+                  <th>Elementos del Fruto del Espírituya</th>
+                  <th>Porcentaje</th>
                 </tr>
               </thead>
               <tbody>
