@@ -7,7 +7,7 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-//State
+//Stat
 import { useContext, useState } from "react";
 import FruitsContext from "../context/frutos/FruitsContext";
 import QuestionsContext from "../context/questions/QuestionsContext";
@@ -406,8 +406,14 @@ const Results = () => {
             />
           </Col>
         </Row>
-        <Row className="justify-content-center align-content-center">
-          <Col lg={8} md={6} sm={8} xs={8}>
+        <Row className="justify-content-center ">
+          <Col
+            lg={12}
+            md={6}
+            sm={12}
+            xs={12}
+            className="d-flex justify-content-center"
+          >
             <StartAgainButton />
           </Col>
           <Col></Col>

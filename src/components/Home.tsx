@@ -1,7 +1,6 @@
 import React from "react";
 
 //Components
-import { Container } from "react-bootstrap";
 import Question from "./Question";
 import styled from "styled-components";
 
@@ -20,30 +19,41 @@ const LeftTopImage = styled.img`
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 16%;
+  width: 30%;
+  z-index: 0;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 16%;
+    z-index: 0;
+  }
 `;
-
 const RightBottomImage = styled.img`
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 8%;
+  width: 0px;
+  @media (min-width: 768px) {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 15%;
+  }
 `;
 
 const LeftBottomImage = styled.img`
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 20%;
+  width: 0px;
+  @media (min-width: 768px) {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 15%;
+  }
 `;
 
 const Home: React.FC = () => {
   return (
     <>
-      <StyledContainer className="d-flex h-100 justify-content-center  align-items-center overflow-hidden">
-        <Container fluid className="h-full p-5">
-          <Question />
-        </Container>
+      <StyledContainer className="d-flex h-100 justify-content-center  align-items-center animation ">
+        <Question />
         <LeftTopImage src={top_left_image} />
         <RightBottomImage src={bottom_right_image} />
         <LeftBottomImage src={bottom_left_image} />

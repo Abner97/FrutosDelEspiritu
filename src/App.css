@@ -3,7 +3,13 @@ body,
 #root,
 #root > div {
   height: 100vh;
-  font-family: 'Average', serif;
+  font-family: "Average", serif;
+}
+
+.animation {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 10px;
 }
 
 @media (min-width: 800px) {
@@ -18,8 +24,15 @@ body,
     -webkit-transition: transform 0.6s ease-in-out;
     -moz-transition: transform 0.6s ease-in-out;
   }
+  .animation {
+    margin-top: 0px;
+  }
 }
 
-.animation {
-  overflow: hidden;
+.text-responsive {
+  font-size: calc(75% + 1vw + 0.5vh);
+}
+
+.text-responsive2 {
+  font-size: calc(75% + 0.5vh);
 }

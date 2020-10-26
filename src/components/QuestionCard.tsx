@@ -54,8 +54,17 @@ const QuestionCard: React.FC = () => {
       {transitions.map(({ props, key }) => (
         <animated.div key={key} style={props}>
           <Card className="mb-3">
-            <Card.Body style={{ background: "#90c73f", textAlign: "center" }}>
-              <h1>{loading ? "LOADING" : questions[actualIndex].question}</h1>
+            <Card.Body
+              style={{
+                background: "#90c73f",
+                textAlign: "center",
+                textOverflow: "ellipsis",
+                padding: "5px",
+              }}
+            >
+              <h1 className="text-responsive">
+                {loading ? "LOADING" : questions[actualIndex].question}
+              </h1>
             </Card.Body>
           </Card>
         </animated.div>
