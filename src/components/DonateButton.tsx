@@ -13,14 +13,14 @@ const DonateButton: React.FC = () => {
       <input type="hidden" name="currency_code" value="USD" />
       <input
         type="image"
-        src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+        src="https://www.paypalobjects.com/es_XC/i/btn/btn_donateCC_LG.gif"
         name="submit"
         title="PayPal - The safer, easier way to pay online!"
-        alt="Donate with PayPal button"
+        alt="Donar con el botón PayPal"
       />
       <img
         alt=""
-        src="https://www.paypal.com/en_US/i/scr/pixel.gif"
+        src="https://www.paypal.com/es_US/i/scr/pixel.gif"
         width="1"
         height="1"
       />
