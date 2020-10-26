@@ -22,7 +22,7 @@ import { AuthContext } from "../context/auth/AuthContext";
 
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
-//import bottom_right_image from "../assets/images/logo_without_label.png";
+
 import bottom_left_image from "../assets/images/A1.png";
 import {
   DES_AMOR,
@@ -46,6 +46,7 @@ import {
   COL_PACIENCIA,
   COL_PAZ,
 } from "../data/answers/all_colors";
+import DonateButton from "../components/DonateButton";
 
 const StyledContainer = styled.div`
   background: white;
@@ -364,6 +365,12 @@ const Results = () => {
                           style={{
                             background: `${color}`,
                           }}
+                          onClick={() =>
+                            changeArrow(
+                              index,
+                              showDescription[index] ? false : true
+                            )
+                          }
                         >
                           <td>
                             <Container fluid>
@@ -376,11 +383,13 @@ const Results = () => {
                                     <FontAwesomeIcon
                                       icon={faAngleUp}
                                       onClick={() => changeArrow(index, false)}
+                                      size={"1x"}
                                     />
                                   ) : (
                                     <FontAwesomeIcon
                                       icon={faAngleDown}
                                       onClick={() => changeArrow(index, true)}
+                                      size={"1x"}
                                     />
                                   )}
                                 </Col>
@@ -415,6 +424,7 @@ const Results = () => {
             className="d-flex justify-content-center"
           >
             <StartAgainButton />
+            <DonateButton />
           </Col>
           <Col></Col>
         </Row>

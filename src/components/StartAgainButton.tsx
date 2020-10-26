@@ -26,7 +26,7 @@ const StartAgainButton: React.FC = () => {
   };
 
   return (
-    <Button variant="danger" onClick={() => startAgain()}>
+    <Button variant="danger" className="mr-5" onClick={() => startAgain()}>
       Volver a hacer el Test
     </Button>
   );
