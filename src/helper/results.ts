@@ -8,14 +8,21 @@ import { DES_AMOR, DES_GOZO, DES_PAZ,
   DES_MANSEDUMBRE,
   DES_DOMINIO_PROPIO,
   DES_BONDAD } from '../data/answers/all_descriptions';
+import { COL_AMOR, COL_BENIGNIDAD, COL_BONDAD, COL_DOMINIO_PROPIO, COL_FE, COL_GOZO, COL_MANSEDUMBRE, COL_PACIENCIA, COL_PAZ } from "../data/answers/all_colors";
 
 
 
 export interface results {
   fruto: string;
   result: number;
-  description: string
+  description: string;
+  color:string;
 }
+const calculateResults=(points:number,numberofQuestions:number)=>{
+  const porcentage=((parseFloat((points / numberofQuestions).toPrecision(3)))*100)/4;
+  return porcentage;
+}
+
 
 export const getresults = (
   questions: Array<QuestionModel>,
@@ -75,37 +82,35 @@ export const getresults = (
         break;
     }
   }
-  console.log(gozo);
+  
   for (let fruto of frutos) {
     switch (fruto.fruto) {
       case "Gozo":
-        Pgozo = parseFloat((fruto.points / gozo).toPrecision(3));
+        Pgozo = calculateResults(fruto.points,gozo);
         break;
       case "Amor":
-        Pamor = parseFloat((fruto.points / amor).toPrecision(3));
+        Pamor = calculateResults(fruto.points,amor);
         break;
       case "Benignidad":
-        Pbenignidad = parseFloat((fruto.points / benignidad).toPrecision(3));
+        Pbenignidad =calculateResults(fruto.points,benignidad);
         break;
       case "Bondad":
-        Pbondad = parseFloat((fruto.points / bondad).toPrecision(3));
+        Pbondad = calculateResults(fruto.points,bondad);
         break;
       case "Dominio propio":
-        PDominioPropio = parseFloat(
-          (fruto.points / dominioPropio).toPrecision(3)
-        );
+        PDominioPropio = calculateResults(fruto.points,dominioPropio);
         break;
       case "Fe":
-        Pfe = parseFloat((fruto.points / fe).toPrecision(3));
+        Pfe = calculateResults(fruto.points,fe);
         break;
       case "Mansedumbre":
-        Pmansedumbre = parseFloat((fruto.points / mansedumbre).toPrecision(3));
+        Pmansedumbre = calculateResults(fruto.points,mansedumbre);
         break;
       case "Paciencia":
-        Ppaciencia = parseFloat((fruto.points / paciencia).toPrecision(3));
+        Ppaciencia = calculateResults(fruto.points,paciencia);
         break;
       case "Paz":
-        Ppaz = parseFloat((fruto.points / paz).toPrecision(3));
+        Ppaz = calculateResults(fruto.points,paz);
         break;
       default:
         break;
@@ -113,15 +118,15 @@ export const getresults = (
   }
 
   const result: results[] = [
-    { fruto: "Amor", result: Pamor, description: DES_AMOR },
-    { fruto: "Benignidad", result: Pbenignidad, description: DES_BENIGNIDAD  },
-    { fruto: "Bondad", result: Pbondad, description: DES_BONDAD  },
-    { fruto: "Dominio propio", result: PDominioPropio, description: DES_DOMINIO_PROPIO  },
-    { fruto: "Fe", result: Pfe, description: DES_FE  },
-    { fruto: "Gozo", result: Pgozo, description: DES_GOZO  },
-    { fruto: "Mansedumbre", result: Pmansedumbre, description: DES_MANSEDUMBRE  },
-    { fruto: "Paciencia", result: Ppaciencia, description: DES_PACIENCIA  },
-    { fruto: "Paz", result: Ppaz, description: DES_PAZ  },
+    { fruto: "Amor", result: Pamor, description: DES_AMOR,color:COL_AMOR },
+    { fruto: "Benignidad", result: Pbenignidad, description: DES_BENIGNIDAD,color:COL_BENIGNIDAD  },
+    { fruto: "Bondad", result: Pbondad, description: DES_BONDAD,color:COL_BONDAD  },
+    { fruto: "Dominio propio", result: PDominioPropio, description: DES_DOMINIO_PROPIO,color:COL_DOMINIO_PROPIO  },
+    { fruto: "Fe", result: Pfe, description: DES_FE,color:COL_FE  },
+    { fruto: "Gozo", result: Pgozo, description: DES_GOZO,color:COL_GOZO  },
+    { fruto: "Mansedumbre", result: Pmansedumbre, description: DES_MANSEDUMBRE,color:COL_MANSEDUMBRE  },
+    { fruto: "Paciencia", result: Ppaciencia, description: DES_PACIENCIA,color:COL_PACIENCIA  },
+    { fruto: "Paz", result: Ppaz, description: DES_PAZ,color:COL_PAZ  },
   ];
 
   result.forEach((item) => {

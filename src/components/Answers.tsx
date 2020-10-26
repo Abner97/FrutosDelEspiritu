@@ -42,14 +42,14 @@ const Answers = () => {
               variant="dark"
               size="lg"
               className="w-100 m-1 hoverable"
+              style={{background:"#36773a"}}
               onClick={() =>
                 onClick(questions[actualIndex].type, answer.points)
               }
             >
-             <b>{answer.answer}
-             </b>             </Button>
+              <b>{answer.answer}</b>{" "}
+            </Button>
           </Col>
-          
         );
       })}
     </>

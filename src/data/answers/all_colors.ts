@@ -1,0 +1,9 @@
+export const COL_AMOR = "#FFABAB";
+export const COL_GOZO = "#DBFFD6";
+export const COL_PAZ = "#C4FAF8";
+export const COL_PACIENCIA = "#F3FFE3";
+export const COL_BENIGNIDAD = "#85E3FF";
+export const COL_FE = "#E7FFAC";
+export const COL_MANSEDUMBRE = "#FFF5BA";
+export const COL_DOMINIO_PROPIO = "#B5B9FF";
+export const COL_BONDAD = "#6EB5FF";

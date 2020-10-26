@@ -24,12 +24,33 @@ import { AuthContext } from "../context/auth/AuthContext";
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 //import bottom_right_image from "../assets/images/logo_without_label.png";
 import bottom_left_image from "../assets/images/A1.png";
-import { DES_AMOR, DES_BENIGNIDAD, DES_BONDAD, DES_DOMINIO_PROPIO, DES_FE, DES_GOZO, DES_MANSEDUMBRE, DES_PACIENCIA, DES_PAZ } from '../data/answers/all_descriptions';
+import {
+  DES_AMOR,
+  DES_BENIGNIDAD,
+  DES_BONDAD,
+  DES_DOMINIO_PROPIO,
+  DES_FE,
+  DES_GOZO,
+  DES_MANSEDUMBRE,
+  DES_PACIENCIA,
+  DES_PAZ,
+} from "../data/answers/all_descriptions";
+import {
+  COL_AMOR,
+  COL_BENIGNIDAD,
+  COL_BONDAD,
+  COL_DOMINIO_PROPIO,
+  COL_FE,
+  COL_GOZO,
+  COL_MANSEDUMBRE,
+  COL_PACIENCIA,
+  COL_PAZ,
+} from "../data/answers/all_colors";
 
 const StyledContainer = styled.div`
   background: white;
   z-index: -2;
-  padding-top:8%
+  padding-top: 8%;
 `;
 
 const LeftTopImage = styled.img`
@@ -40,7 +61,7 @@ const LeftTopImage = styled.img`
 `;
 
 // const RightBottomImage = styled.img`
-  
+
 //   width: 0px;
 //   @media (min-width: 800px) {
 //     position: absolute;
@@ -51,7 +72,7 @@ const LeftTopImage = styled.img`
 // `;
 
 const LeftBottomImage = styled.img`
-  width:0px;
+  width: 0px;
   @media (min-width: 800px) {
     position: absolute;
     bottom: 0px;
@@ -63,12 +84,14 @@ const LeftBottomImage = styled.img`
 const DescriptionText = styled.p`
   font-size: 14px;
   font-style: italic;
-  color:#757373;
-  margin-top: 20px
-  
+  color: #757373;
+  margin-top: 20px;
 `;
 
-
+const InfoStyled = styled.i`
+  color: #787878;
+  font-size: 14px;
+`;
 
 const Results = () => {
   //State Handling
@@ -79,15 +102,35 @@ const Results = () => {
   const { frutos } = fruitsContexts;
 
   let resultss: Array<results> = [
-    { fruto: "Amor", result: 0 , description:DES_AMOR},
-    { fruto: "Benignidad", result: 0,description:DES_BENIGNIDAD },
-    { fruto: "Bondad", result: 0,description:DES_BONDAD },
-    { fruto: "Dominio propio", result: 0,description:DES_DOMINIO_PROPIO },
-    { fruto: "Fe", result: 0,description:DES_FE },
-    { fruto: "Gozo", result: 0,description:DES_GOZO },
-    { fruto: "Mansedumbre", result: 0,description:DES_MANSEDUMBRE },
-    { fruto: "Paciencia", result: 0,description:DES_PACIENCIA },
-    { fruto: "Paz", result: 0,description:DES_PAZ },
+    { fruto: "Amor", result: 0, description: DES_AMOR, color: COL_AMOR },
+    {
+      fruto: "Benignidad",
+      result: 0,
+      description: DES_BENIGNIDAD,
+      color: COL_BENIGNIDAD,
+    },
+    { fruto: "Bondad", result: 0, description: DES_BONDAD, color: COL_BONDAD },
+    {
+      fruto: "Dominio propio",
+      result: 0,
+      description: DES_DOMINIO_PROPIO,
+      color: COL_DOMINIO_PROPIO,
+    },
+    { fruto: "Fe", result: 0, description: DES_FE, color: COL_FE },
+    { fruto: "Gozo", result: 0, description: DES_GOZO, color: COL_GOZO },
+    {
+      fruto: "Mansedumbre",
+      result: 0,
+      description: DES_MANSEDUMBRE,
+      color: COL_MANSEDUMBRE,
+    },
+    {
+      fruto: "Paciencia",
+      result: 0,
+      description: DES_PACIENCIA,
+      color: COL_PACIENCIA,
+    },
+    { fruto: "Paz", result: 0, description: DES_PAZ, color: COL_PAZ },
   ];
 
   interface series {
@@ -122,6 +165,14 @@ const Results = () => {
       };
       xaxis: {
         categories: Array<string>;
+        labels: {
+          show: boolean;
+          style: {
+            colors: Array<string>;
+            fontSize?: string;
+            fontFamily?: string;
+          };
+        };
       };
       responsive: Array<responsive>;
       colors: Array<string>;
@@ -141,6 +192,16 @@ const Results = () => {
     };
   }
 
+  //esta funcion ordena los resultado de menor a mayor
+  const sortResults = (results: Array<results>) => {
+    const temp = results;
+    temp.sort((a, b) => {
+      return a.result - b.result;
+    });
+
+    setResults(temp);
+  };
+
   let chartValue: Ichart = {
     series: [
       {
@@ -152,13 +213,20 @@ const Results = () => {
       chart: {
         height: 350,
         type: "radar",
-        foreColor: "#000000",
+        foreColor: "#",
       },
       title: {
         text: `Tu Fruto del Espíritu ${name}`,
       },
       xaxis: {
         categories: [],
+        labels: {
+          show: true,
+          style: {
+            colors: [],
+            fontSize: "12px",
+          },
+        },
       },
       responsive: [
         {
@@ -168,7 +236,7 @@ const Results = () => {
               width: "100%",
               height: "500",
               type: "radar",
-              foreColor: "#000000",
+              foreColor: "#36773a",
             },
           },
         },
@@ -216,7 +284,7 @@ const Results = () => {
         mode: "light",
         palette: "palette10",
         monochrome: {
-          enabled: false,
+          enabled: true,
           color: "#36773a",
           shadeTo: "light",
           shadeIntensity: 0.65,
@@ -240,10 +308,6 @@ const Results = () => {
     } else {
       getresults(questions, frutos);
     }
-      //TODO DELETE
-    //Crear array con frutos
-    // con ese array mapearlo a el get item y con eso setear los promedios de esa vaina crear el objeto y pasarselo a el results
-    // const index = localStorage.getItem(fruit);
 
     resultss.forEach((item) => {
       tempArray.push(false);
@@ -253,67 +317,83 @@ const Results = () => {
 
     resultss.forEach((fruto) => {
       chartValue.options.xaxis.categories.push(fruto.fruto);
+      chartValue.options.xaxis.labels.style.colors.push("#000000");
       chartValue.series[0].data.push(fruto.result);
     });
+
     setResults(resultss);
+    sortResults(results);
     setShow(true);
     setChart(chartValue);
     window.dispatchEvent(new Event("resize"));
     // eslint-disable-next-line
   }, []);
 
-  //TODO DELETE
-  // function getResult(fruto: fruitsPoints, index: number) {
-  //   setResults([...results, localStorage.getItem(`P${fruto.fruto}`)!]);
-  //   return results[index];
-  // }
-
   function changeArrow(index: number, value: boolean) {
     tempArray[index] = value;
     setShowDescription(tempArray);
   }
+
   return (
     <StyledContainer className="h-100">
       <Container className="w-100 h-full  align-content-center justify-content-center ">
+        <Row className="justify-content-start">
+          <Col lg={6} md={6} sm={12} xs={12}>
+            <InfoStyled>
+              Estos porcentajes indican tu estado actual en los elementos del
+              Fruto del Espíritu, debes trabajar en los que tengan menor
+              porcentaje.
+            </InfoStyled>
+          </Col>
+        </Row>
         <Row className="justify-content-center ">
           <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
             <Table striped bordered hover>
               <thead>
-                <tr>
-                  <th>Elementos del Fruto del Espírituya</th>
+                <tr style={{ backgroundColor: "#36773a", color: "white" }}>
+                  <th>Elementos del Fruto del Espíritu</th>
                   <th>Porcentaje</th>
                 </tr>
               </thead>
               <tbody>
                 {show
-                  ? results.map(({ fruto, result, description }, index) => (
-                      <tr key={index}>
-                        <td>
-                          <Container fluid>
-                            <Row>
-                              <Col lg={10} xl={10} xs={10} sm={10}>
-                                <b>{fruto}</b>
-                              </Col>
-                              <Col lg={10} xl={2} xs={2} sm={2}>
-                                {showDescription[index] ? (
-                                  <FontAwesomeIcon
-                                    icon={faAngleUp}
-                                    onClick={() => changeArrow(index, false)}
-                                  />
-                                ) : (
-                                  <FontAwesomeIcon
-                                    icon={faAngleDown}
-                                    onClick={() => changeArrow(index, true)}
-                                  />
-                                )}
-                              </Col>
-                            </Row>
-                            {showDescription[index] && (<DescriptionText>{description}</DescriptionText>)}
-                          </Container>
-                        </td>
-                        <td>{result}</td>
-                      </tr>
-                    ))
+                  ? results.map(
+                      ({ fruto, result, description, color }, index) => (
+                        <tr
+                          key={index}
+                          style={{
+                            background: `${color}`,
+                          }}
+                        >
+                          <td>
+                            <Container fluid>
+                              <Row>
+                                <Col lg={10} xl={10} xs={10} sm={10}>
+                                  <b>{fruto}</b>
+                                </Col>
+                                <Col lg={10} xl={2} xs={2} sm={2}>
+                                  {showDescription[index] ? (
+                                    <FontAwesomeIcon
+                                      icon={faAngleUp}
+                                      onClick={() => changeArrow(index, false)}
+                                    />
+                                  ) : (
+                                    <FontAwesomeIcon
+                                      icon={faAngleDown}
+                                      onClick={() => changeArrow(index, true)}
+                                    />
+                                  )}
+                                </Col>
+                              </Row>
+                              {showDescription[index] && (
+                                <DescriptionText>{description}</DescriptionText>
+                              )}
+                            </Container>
+                          </td>
+                          <td>{result}%</td>
+                        </tr>
+                      )
+                    )
                   : null}
               </tbody>
             </Table>
@@ -330,17 +410,11 @@ const Results = () => {
           <Col lg={8} md={6} sm={8} xs={8}>
             <StartAgainButton />
           </Col>
-          <Col>
-            
-            {/* <PayPalButton
-            currency="USD"
-            options={{ clientId: "sb56AHJTZZYRWWE", currency: "USD" }}
-          ></PayPalButton> */}
-          </Col>
+          <Col></Col>
         </Row>
       </Container>
       <LeftTopImage src={top_left_image} />
-     
+
       <LeftBottomImage src={bottom_left_image} />
     </StyledContainer>
   );

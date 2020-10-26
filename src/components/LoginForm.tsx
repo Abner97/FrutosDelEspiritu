@@ -50,8 +50,15 @@ const LoginForm = () => {
 
   return (
     <Card>
-      <Card.Body style={{ background: "#118a13" }} className={"border rounded-lg"}>
-        <h3 className={"d-flex justify-content-center  align-items-center font-weight-bold text-white "}>
+      <Card.Body
+        style={{ background: "#118a13" }}
+        className={"border rounded-lg"}
+      >
+        <h3
+          className={
+            "d-flex justify-content-center  align-items-center font-weight-bold text-white "
+          }
+        >
           REGISTRA TUS DATOS
         </h3>
         <Formik
@@ -88,7 +95,7 @@ const LoginForm = () => {
               <Field name="email">
                 {({ field, ...props }: FieldProps) => (
                   <FormGroup controlId="email">
-                    <FormLabel>Tú Email</FormLabel>
+                    <FormLabel>Correo</FormLabel>
                     <FormControl
                       type={"email"}
                       value={field.value}

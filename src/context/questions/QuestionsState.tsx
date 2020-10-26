@@ -42,7 +42,7 @@ const QuestionsState = (props: propsInterface) => {
   const getQuestions = async () => {
     try {
       const allQuestions = await remoteDataSource.getQuestions();
-      console.log(allQuestions);
+
       localStorage.setItem("Questions", JSON.stringify(allQuestions));
       const action: actionInterface = {
         type: GET_QUESTIONS,

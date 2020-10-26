@@ -1,4 +1,4 @@
-export const DES_AMOR = "Amor.";
+export const DES_AMOR = "Capacidad de sacrificio de una persona para beneficiar a otra sin pedir nada a cambio.";
 export const DES_GOZO = "Un estado de felicidad o bienestar basado en las realidades espirituales, no materiales.";
 export const DES_PAZ = "Tranquilidad absoluta del alma que hace a una persona absolutamente libre del miedo o del conflicto.";
 export const DES_PACIENCIA = "Capacidad de soportar por largo tiempo el sufrimiento, causado por otros o por situaciones que Dios permite, sin quejarse o irritarse.";

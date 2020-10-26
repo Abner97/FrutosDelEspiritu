@@ -44,37 +44,18 @@ const QuestionCard: React.FC = () => {
     });
 
     if (actualIndex > 28) {
-      console.log(actualIndex);
       history.push("/results");
     }
     // eslint-disable-next-line
   }, []);
-
-  // const startAgain = () => {
-  //   localStorage.clear();
-  //   frutosContext.resetFrutosState();
-  //   questionsContext.resetStateQuestions();
-  //   saveCredentials("", "");
-  //   history.push("/");
-  // };
-
-  // function showQuestions() {
-  //   if (questions.length !== 0 && actualIndex <= questions.length - 1) {
-  //     return questions[actualIndex].question;
-  //   } else {
-  //     console.log("aqui toy");
-  //     startAgain();
-  //   }
-  // }
 
   return (
     <>
       {transitions.map(({ props, key }) => (
         <animated.div key={key} style={props}>
           <Card className="mb-3">
-            <Card.Body style={{ background: "#90c73f",textAlign:"center" }} >
+            <Card.Body style={{ background: "#90c73f", textAlign: "center" }}>
               <h1>{loading ? "LOADING" : questions[actualIndex].question}</h1>
-             
             </Card.Body>
           </Card>
         </animated.div>
@@ -84,5 +65,3 @@ const QuestionCard: React.FC = () => {
 };
 
 export default QuestionCard;
-// Cuando se comete una injusticia en mi contra, y que no puedo
-// solucionar, pongo el asunto en las manos de Dios sin hacer el mal.
