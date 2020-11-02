@@ -135,7 +135,7 @@ const Results = () => {
   ];
 
   interface series {
-    name: string;
+    name?: string;
     data: Array<number>;
   }
 
@@ -157,17 +157,58 @@ const Results = () => {
     series: Array<series>;
     options: {
       chart: {
+        background?: {
+          background: string;
+        };
+        animations?: {
+          enabled: boolean;
+          easing: string;
+          speed: number;
+          animateGradually: {
+            enabled: boolean;
+            delay: number;
+          };
+          dynamicAnimation: {
+            enabled: boolean;
+            speed: number;
+          };
+        };
         height: number;
         type: string;
-        foreColor: string;
+        events: {
+          click: Function;
+        };
       };
       title: {
-        text: string;
+        text: string | undefined;
+        align: string;
+        margin: number;
+        offsetX: number;
+        offsetY: number;
+        floating: boolean;
+        style: {
+          fontSize: string;
+          fontWeight: string;
+          fontFamily: string | undefined;
+          color: string;
+        };
+      };
+      colors: Array<string>;
+      plotOptions: {
+        bar: {
+          columnWidth: string;
+          distributed: boolean;
+        };
+      };
+      dataLabels: {
+        enabled: boolean;
+      };
+      legend: {
+        show: boolean;
       };
       xaxis: {
         categories: Array<string>;
         labels: {
-          show: boolean;
           style: {
             colors: Array<string>;
             fontSize?: string;
@@ -175,19 +216,16 @@ const Results = () => {
           };
         };
       };
-      responsive: Array<responsive>;
-      colors: Array<string>;
-      dataLabels: {
-        style: {};
-      };
-      theme: {
-        mode: string;
-        palette: string;
-        monochrome: {
-          enabled: boolean;
-          color: string;
-          shadeTo: string;
-          shadeIntensity: number;
+      responsive?: Array<responsive>;
+
+      theme?: {
+        mode?: string;
+        palette?: string;
+        monochrome?: {
+          enabled?: boolean;
+          color?: string;
+          shadeTo?: string;
+          shadeIntensity?: number;
         };
       };
     };
@@ -206,95 +244,77 @@ const Results = () => {
   let chartValue: Ichart = {
     series: [
       {
-        name: `Resultados de tu fruto del Espíritu ${name}`,
+        name: `Elementos del Fruto`,
         data: [],
       },
     ],
     options: {
       chart: {
-        height: 350,
-        type: "radar",
-        foreColor: "#",
+        background: {
+          background: "#000000",
+        },
+        animations: {
+          enabled: true,
+          easing: "easeinout",
+          speed: 800,
+          animateGradually: {
+            enabled: true,
+            delay: 150,
+          },
+          dynamicAnimation: {
+            enabled: true,
+            speed: 350,
+          },
+        },
+        height: 500,
+        type: "bar",
+        events: {
+          click: function (chart: any, w: any, e: any) {
+            // console.log(chart, w, e)
+          },
+        },
       },
       title: {
-        text: `Tu Fruto del Espíritu ${name}`,
+        text: `Fruto del Espíritu: ${name}`,
+        align: "left",
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize: "14px",
+          fontWeight: "bold",
+          fontFamily: "Average, serif",
+          color: "#263238",
+        },
+      },
+      colors: [],
+      plotOptions: {
+        bar: {
+          columnWidth: "45%",
+          distributed: true,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        show: false,
       },
       xaxis: {
         categories: [],
         labels: {
-          show: true,
           style: {
             colors: [],
             fontSize: "12px",
           },
         },
       },
-      responsive: [
-        {
-          breakpoint: 768,
-          options: {
-            chart: {
-              width: "100%",
-              height: "500",
-              type: "radar",
-              foreColor: "#36773a",
-            },
-          },
-        },
-        {
-          breakpoint: 992,
-          options: {
-            chart: {
-              width: "100%",
-              height: "500",
-              type: "radar",
-              foreColor: "#000000",
-            },
-          },
-        },
-        {
-          breakpoint: 1200,
-          options: {
-            chart: {
-              width: "100%",
-              height: "500",
-              type: "radar",
-              foreColor: "#000000",
-            },
-          },
-        },
-        {
-          breakpoint: 500000,
-          options: {
-            chart: {
-              width: "100%",
-              height: "500",
-              type: "radar",
-              foreColor: "#000000",
-            },
-          },
-        },
-      ],
-      colors: ["#36773a"],
-      dataLabels: {
-        style: {
-          colors: ["#F44336", "#E91E63", "#9C27B0"],
-        },
-      },
-      theme: {
-        mode: "light",
-        palette: "palette10",
-        monochrome: {
-          enabled: true,
-          color: "#36773a",
-          shadeTo: "light",
-          shadeIntensity: 0.65,
-        },
-      },
     },
   };
 
-  const [chart, setChart] = useState<Ichart>(chartValue);
+  // const [chart, setChart] = useState<Ichart>(chartValue);
+  const [chart, setChart] = useState(chartValue);
   const [results, setResults] = useState(resultss);
   const [show, setShow] = useState(false);
   const [showDescription, setShowDescription] = useState<Array<boolean>>([]);
@@ -318,7 +338,8 @@ const Results = () => {
 
     resultss.forEach((fruto) => {
       chartValue.options.xaxis.categories.push(fruto.fruto);
-      chartValue.options.xaxis.labels.style.colors.push("#000000");
+      chartValue.options.xaxis.labels.style.colors.push(fruto.color);
+      chartValue.options.colors.push(fruto.color);
       chartValue.series[0].data.push(fruto.result);
     });
 
@@ -347,7 +368,7 @@ const Results = () => {
             </InfoStyled>
           </Col>
         </Row>
-        <Row className="justify-content-center ">
+        <Row className="justify-content-center align-items-center">
           <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
             <Table striped bordered hover>
               <thead>
@@ -408,11 +429,13 @@ const Results = () => {
             </Table>
           </Col>
           <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
-            <ReactApexChart
-              series={chart.series}
-              options={chart.options}
-              type="radar"
-            />
+            {chart.series[0].data.length !== 0 ? (
+              <ReactApexChart
+                series={chart.series}
+                options={chart.options}
+                type="bar"
+              />
+            ) : null}
           </Col>
         </Row>
         <Row className="justify-content-center ">

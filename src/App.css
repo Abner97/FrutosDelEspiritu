@@ -36,3 +36,7 @@ body,
 .text-responsive2 {
   font-size: calc(75% + 0.5vh);
 }
+
+.apexcharts-canvas {
+  background: rgba(125, 133, 126, 0.746) !important;
+}
