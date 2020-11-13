@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //Components
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
@@ -16,6 +16,7 @@ import * as Yup from "yup";
 //State
 import { AuthContext } from "../context/auth/AuthContext";
 import { useHistory } from "react-router-dom";
+import SignUpForm from "./SignUpForm";
 
 interface LoginValues {
   name: string;
@@ -30,9 +31,10 @@ const LoginSchema = Yup.object().shape({
   email: Yup.string().email().required("Porfavor introduzca su email"),
 });
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false);
 
   const { saveCredentials, email, name } = authContext;
 
@@ -73,6 +75,7 @@ const LoginForm = () => {
           ) => {
             setSubmitting(true);
             sendCredentials(values.name, values.email);
+            // submitSignUpForm({ name: values.name, email: values.email });
           }}
         >
           {({ errors, touched }) => (
@@ -110,6 +113,14 @@ const LoginForm = () => {
               <Button variant="info" type="submit" className="mt-2">
                 Comenzar test
               </Button>
+              <Button
+                onClick={() => {
+                  setShowModal(true);
+                }}
+              >
+                Registrarse
+              </Button>
+              <SignUpForm showModal={showModal} stateHandler={setShowModal} />
             </Form>
           )}
         </Formik>
