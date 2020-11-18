@@ -2,13 +2,13 @@ import React from "react";
 
 //Components
 import { Col, Container, Row } from "react-bootstrap";
-import LoginForm from "../components/LoginForm";
 import styled from "styled-components";
 
 //Assets
 import bottom_right_image from "../assets/images/logo_without_label.png";
 import bottom_left_image from "../assets/images/A1.png";
 import LOGO_NEGRO from "../assets/images/LOGO_NEGRO.png";
+import LoginForm from "../components/LoginForm";
 
 const StyledContainer = styled.div`
   background: white;

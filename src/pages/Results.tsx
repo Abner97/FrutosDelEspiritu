@@ -14,7 +14,7 @@ import QuestionsContext from "../context/questions/QuestionsContext";
 
 //Helpers
 // eslint-disable-next-line
-import { getresults, results } from "../helper/results";
+import { getresults, Results as RS } from "../helper/results";
 
 //Models
 import { QuestionModel } from "../models/question_model";
@@ -47,6 +47,7 @@ import {
   COL_PAZ,
 } from "../data/answers/all_colors";
 import DonateButton from "../components/DonateButton";
+import { saveResultsOnFireBase } from "../services/results";
 
 const StyledContainer = styled.div`
   background: white;
@@ -102,7 +103,7 @@ const Results = () => {
   const { questions } = questionsContext;
   const { frutos } = fruitsContexts;
 
-  let resultss: Array<results> = [
+  let resultss: Array<RS> = [
     { fruto: "Amor", result: 0, description: DES_AMOR, color: COL_AMOR },
     {
       fruto: "Benignidad",
@@ -232,7 +233,7 @@ const Results = () => {
   }
 
   //esta funcion ordena los resultado de menor a mayor
-  const sortResults = (results: Array<results>) => {
+  const sortResults = (results: Array<RS>) => {
     const temp = results;
     temp.sort((a, b) => {
       return a.result - b.result;
@@ -342,9 +343,12 @@ const Results = () => {
       chartValue.options.colors.push(fruto.color);
       chartValue.series[0].data.push(fruto.result);
     });
-
+    console.log("RESULTS");
+    console.log(resultss);
     setResults(resultss);
     sortResults(results);
+    //guardando datos en la BD
+    saveResultsOnFireBase(results);
     setShow(true);
     setChart(chartValue);
     window.dispatchEvent(new Event("resize"));
