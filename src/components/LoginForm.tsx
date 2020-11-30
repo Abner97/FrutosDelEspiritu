@@ -16,7 +16,7 @@ import { CountryDropdown } from "react-country-region-selector";
 
 //Helpers
 import * as Yup from "yup";
-import { getUser, saveData } from "../services/auth/auth";
+import { getUser } from "../services/auth/auth";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";
 import { SignUp } from "../services/auth/interfaces";
@@ -39,8 +39,21 @@ const LoginForm: React.FC = () => {
 
   const { saveCredentials, email, name } = authContext;
 
-  const sendCredentials = (name: string, email: string) => {
+  const sendCredentials = (
+    name: string,
+    email: string,
+    country: string,
+    birthDay: string
+  ) => {
     saveCredentials(name, email);
+    const userInfo: SignUp = {
+      name: name,
+      email: email,
+      country: country,
+      birthDay: birthDay,
+    };
+
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
     history.push("/home");
   };
 
@@ -77,25 +90,26 @@ const LoginForm: React.FC = () => {
           ) => {
             setSubmitting(true);
             getUser(values).then((users) => {
-              console.log(users);
               if (users) {
-                sendCredentials(values.name, values.email);
-                console.log("ya existes");
+                localStorage.setItem("newUser", "no");
               } else {
-                saveData(values).then(() => {
-                  console.log("nuevo usuario");
-                  sendCredentials(values.name, values.email);
-                });
+                localStorage.setItem("newUser", "yes");
               }
+              sendCredentials(
+                values.name,
+                values.email,
+                values.country,
+                values.birthDay
+              );
             });
           }}
         >
           {({ touched, errors }) => (
             <Form className={" text-black text-lg p-30"}>
               <Frm.Row>
-                <Field name="name">
+                <Field name='name'>
                   {({ field, ...props }: FieldProps) => (
-                    <FormGroup controlId="name" as={Col}>
+                    <FormGroup controlId='name' as={Col}>
                       <FormLabel>Tú Nombre</FormLabel>
                       <InputGroup>
                         <FormControl
@@ -104,7 +118,7 @@ const LoginForm: React.FC = () => {
                           onChange={field.onChange}
                           isInvalid={!!errors.name}
                         />
-                        <Frm.Control.Feedback type="invalid">
+                        <Frm.Control.Feedback type='invalid'>
                           {errors.name}
                         </Frm.Control.Feedback>
                       </InputGroup>
@@ -112,9 +126,9 @@ const LoginForm: React.FC = () => {
                   )}
                 </Field>
 
-                <Field name="email">
+                <Field name='email'>
                   {({ field, ...props }: FieldProps) => (
-                    <FormGroup controlId="email" as={Col}>
+                    <FormGroup controlId='email' as={Col}>
                       <FormLabel>Correo</FormLabel>
                       <InputGroup>
                         <FormControl
@@ -123,7 +137,7 @@ const LoginForm: React.FC = () => {
                           onChange={field.onChange}
                           isInvalid={!!errors.email}
                         />
-                        <Frm.Control.Feedback type="invalid">
+                        <Frm.Control.Feedback type='invalid'>
                           {errors.email}
                         </Frm.Control.Feedback>
                       </InputGroup>
@@ -132,9 +146,9 @@ const LoginForm: React.FC = () => {
                 </Field>
               </Frm.Row>
               <Frm.Row>
-                <Field name="birthDay">
+                <Field name='birthDay'>
                   {({ field, ...props }: FieldProps) => (
-                    <FormGroup controlId="birthDay" as={Col}>
+                    <FormGroup controlId='birthDay' as={Col}>
                       <FormLabel>Fecha de Nacimiento</FormLabel>
                       <InputGroup>
                         <FormControl
@@ -142,27 +156,27 @@ const LoginForm: React.FC = () => {
                           value={field.value}
                           onChange={field.onChange}
                           isInvalid={!!errors.birthDay}
-                          placeholder="09/08/1980"
+                          placeholder='09/08/1980'
                         />
-                        <Frm.Control.Feedback type="invalid">
+                        <Frm.Control.Feedback type='invalid'>
                           {errors.birthDay}
                         </Frm.Control.Feedback>
                       </InputGroup>
                     </FormGroup>
                   )}
                 </Field>
-                <Field name="country">
+                <Field name='country'>
                   {({ field, ...props }: FieldProps) => (
-                    <FormGroup controlId="country" as={Col}>
+                    <FormGroup controlId='country' as={Col}>
                       <FormLabel>País</FormLabel>
                       <InputGroup>
                         <CountryDropdown
-                          classes="form-control"
-                          name="country"
+                          classes='form-control'
+                          name='country'
                           value={field.value}
                           onChange={(_, val) => field.onChange(val)}
                         ></CountryDropdown>
-                        <Frm.Control.Feedback type="invalid">
+                        <Frm.Control.Feedback type='invalid'>
                           {errors.country}
                         </Frm.Control.Feedback>
                       </InputGroup>
@@ -174,7 +188,7 @@ const LoginForm: React.FC = () => {
                 ) : null} */}
               </Frm.Row>
 
-              <Button variant="info" type="submit" className="mt-2">
+              <Button variant='info' type='submit' className='mt-2'>
                 Comenzar test
               </Button>
             </Form>

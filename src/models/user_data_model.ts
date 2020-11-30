@@ -3,8 +3,7 @@ export class UserModel {
     readonly name: string,
     readonly email: string,
     readonly country: string,
-    readonly birthDay: string,
-    readonly church: string
+    readonly birthDay: string
   ) {}
 
   static fromJson = (json: any): UserModel => {
@@ -12,8 +11,7 @@ export class UserModel {
       json.name,
       json.email,
       json.country,
-      json.birthDay,
-      json.church
+      json.birthDay
     );
     return castResponseModel;
   };

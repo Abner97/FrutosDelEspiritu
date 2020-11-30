@@ -361,9 +361,9 @@ const Results = () => {
   }
 
   return (
-    <StyledContainer className="h-100">
-      <Container className="w-100 h-full  align-content-center justify-content-center ">
-        <Row className="justify-content-start">
+    <StyledContainer className='h-100'>
+      <Container className='w-100 h-full  align-content-center justify-content-center '>
+        <Row className='justify-content-start'>
           <Col lg={6} md={6} sm={12} xs={12}>
             <InfoStyled>
               Estos porcentajes indican tu estado actual en los elementos del
@@ -372,8 +372,8 @@ const Results = () => {
             </InfoStyled>
           </Col>
         </Row>
-        <Row className="justify-content-center align-items-center">
-          <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
+        <Row className='justify-content-center align-items-center'>
+          <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
             <Table striped bordered hover>
               <thead>
                 <tr style={{ backgroundColor: "#36773a", color: "white" }}>
@@ -432,23 +432,24 @@ const Results = () => {
               </tbody>
             </Table>
           </Col>
-          <Col lg={6} md={6} sm={12} xs={12} className="my-4 ">
+          <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
             {chart.series[0].data.length !== 0 ? (
               <ReactApexChart
                 series={chart.series}
                 options={chart.options}
-                type="bar"
+                type='bar'
+                height={490}
               />
             ) : null}
           </Col>
         </Row>
-        <Row className="justify-content-center ">
+        <Row className='justify-content-center '>
           <Col
             lg={12}
             md={6}
             sm={12}
             xs={12}
-            className="d-flex justify-content-center"
+            className='d-flex justify-content-center'
           >
             <StartAgainButton />
             <DonateButton />
