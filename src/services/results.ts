@@ -20,10 +20,24 @@ export const saveResultsOnFireBase = async (results: Array<Results>) => {
             db.collection("usuarios")
               .doc(doc.id)
               .update({
-                test: {
-                  results,
-                  submitedAt: timeStamp,
-                },
+                amor: results.find((result) => result.fruto == "Amor")?.result,
+                mansedumbre: results.find(
+                  (result) => result.fruto == "Mansedumbre"
+                )?.result,
+                fe: results.find((result) => result.fruto == "Fe")?.result,
+                benignidad: results.find(
+                  (result) => result.fruto == "Benignidad"
+                )?.result,
+                bondad: results.find((result) => result.fruto == "Bondad")
+                  ?.result,
+                dominioPropio: results.find(
+                  (result) => result.fruto == "Dominio propio"
+                )?.result,
+                gozo: results.find((result) => result.fruto == "Gozo")?.result,
+                paz: results.find((result) => result.fruto == "Paz")?.result,
+                paciencia: results.find((result) => result.fruto == "Paciencia")
+                  ?.result,
+                submitedAt: timeStamp,
               });
           });
         });
@@ -49,10 +63,24 @@ export const saveResultsOnFireBase = async (results: Array<Results>) => {
             db.collection("usuarios")
               .doc(doc.id)
               .update({
-                test: {
-                  results,
-                  submitedAt: timeStamp,
-                },
+                amor: results.find((result) => result.fruto == "Amor")?.result,
+                mansedumbre: results.find(
+                  (result) => result.fruto == "Mansedumbre"
+                )?.result,
+                fe: results.find((result) => result.fruto == "Fe")?.result,
+                benignidad: results.find(
+                  (result) => result.fruto == "Benignidad"
+                )?.result,
+                bondad: results.find((result) => result.fruto == "Bondad")
+                  ?.result,
+                dominioPropio: results.find(
+                  (result) => result.fruto == "Dominio propio"
+                )?.result,
+                gozo: results.find((result) => result.fruto == "Gozo")?.result,
+                paz: results.find((result) => result.fruto == "Paz")?.result,
+                paciencia: results.find((result) => result.fruto == "Paciencia")
+                  ?.result,
+                submitedAt: timeStamp,
               });
           });
         });
