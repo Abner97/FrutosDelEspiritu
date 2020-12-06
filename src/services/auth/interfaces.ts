@@ -3,4 +3,5 @@ export interface SignUp {
   email: string;
   country: string;
   birthDay: string;
+  age?:number;
 }
