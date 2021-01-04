@@ -21,6 +21,29 @@ export const getUser = async (signUpData: SignUp) => {
   }
 };
 
+
+export function calculateAge(date: string): number {
+  const ageDifMs = Date.now() - new Date(date).getTime();
+  const ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+export const updateUserInfo= async (signUpData:SignUp)=>{
+  const age=calculateAge(signUpData.birthDay);
+  signUpData.age=age;
+  await db
+  .collection("usuarios")
+  .where("email", "==", signUpData.email)
+  .get()
+  .then((data) => {
+    data.docs.forEach((doc) => {
+      db.collection("usuarios")
+        .doc(doc.id)
+        .update(signUpData);
+    });
+  });
+}
+
 export const saveData = async (signUpData: SignUp) => {
   console.log(signUpData);
   try {
@@ -38,6 +61,8 @@ export const saveData = async (signUpData: SignUp) => {
     const statsRef = db.collection("stats").doc("--users_count--");
     const usersRef = db.collection("usuarios").doc();
     const batch = db.batch();
+    const age=calculateAge(signUpData.birthDay);
+    signUpData.age=age;
     batch.set(usersRef, signUpData);
     batch.set(statsRef, { count: increment }, { merge: true });
     await batch.commit();
