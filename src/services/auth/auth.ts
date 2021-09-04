@@ -16,11 +16,10 @@ export const getUser = async (signUpData: SignUp) => {
       return false;
     }
   } catch (error) {
-    console.log(error);
+    console.debug(error);
     return error;
   }
 };
-
 
 export function calculateAge(date: string): number {
   const ageDifMs = Date.now() - new Date(date).getTime();
@@ -28,46 +27,33 @@ export function calculateAge(date: string): number {
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
-export const updateUserInfo= async (signUpData:SignUp)=>{
-  const age=calculateAge(signUpData.birthDay);
-  signUpData.age=age;
+export const updateUserInfo = async (signUpData: SignUp) => {
+  const age = calculateAge(signUpData.birthDay);
+  signUpData.age = age;
   await db
-  .collection("usuarios")
-  .where("email", "==", signUpData.email)
-  .get()
-  .then((data) => {
-    data.docs.forEach((doc) => {
-      db.collection("usuarios")
-        .doc(doc.id)
-        .update(signUpData);
+    .collection("usuarios")
+    .where("email", "==", signUpData.email)
+    .get()
+    .then((data) => {
+      data.docs.forEach((doc) => {
+        db.collection("usuarios").doc(doc.id).update(signUpData);
+      });
     });
-  });
-}
+};
 
 export const saveData = async (signUpData: SignUp) => {
-  console.log(signUpData);
   try {
-    console.log("enviando");
-    // for (let i = 0; i <= 100; i++) {
-    //   const increment = firebase.firestore.FieldValue.increment(1);
-    //   const statsRef = db.collection("stats").doc("--users_count--");
-    //   const usersRef = db.collection("usuarios").doc();
-    //   const batch = db.batch();
-    //   batch.set(usersRef, signUpData);
-    //   batch.set(statsRef, { count: increment }, { merge: true });
-    //   await batch.commit();
-    // }
     const increment = firebase.firestore.FieldValue.increment(1);
     const statsRef = db.collection("stats").doc("--users_count--");
     const usersRef = db.collection("usuarios").doc();
     const batch = db.batch();
-    const age=calculateAge(signUpData.birthDay);
-    signUpData.age=age;
+    const age = calculateAge(signUpData.birthDay);
+    signUpData.age = age;
     batch.set(usersRef, signUpData);
     batch.set(statsRef, { count: increment }, { merge: true });
     await batch.commit();
   } catch (error) {
-    console.log(error);
+    console.debug(error);
     return error;
   }
 };
