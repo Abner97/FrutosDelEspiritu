@@ -44,7 +44,7 @@ const QuestionCard: React.FC = () => {
     });
 
     if (actualIndex > 28) {
-      history.push("/results");
+      history.replace("/results");
     }
     // eslint-disable-next-line
   }, []);
@@ -53,7 +53,7 @@ const QuestionCard: React.FC = () => {
     <>
       {transitions.map(({ props, key }) => (
         <animated.div key={key} style={props}>
-          <Card className="mb-3">
+          <Card className='mb-3'>
             <Card.Body
               style={{
                 background: "#90c73f",
@@ -62,7 +62,7 @@ const QuestionCard: React.FC = () => {
                 padding: "5px",
               }}
             >
-              <h1 className="text-responsive">
+              <h1 className='text-responsive'>
                 {loading ? "LOADING" : questions[actualIndex].question}
               </h1>
             </Card.Body>

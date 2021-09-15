@@ -1,7 +1,7 @@
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button, ButtonProps } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const AboutButton: React.FC<React.HTMLAttributes<Button>> = ({ ...props }) => {
   return (
@@ -11,7 +11,7 @@ const AboutButton: React.FC<React.HTMLAttributes<Button>> = ({ ...props }) => {
       as={() => (
         <FontAwesomeIcon
           icon={faQuestionCircle}
-          color="#36773a"
+          color='#36773a'
           size={"2x"}
         ></FontAwesomeIcon>
       )}
