@@ -1,5 +1,4 @@
-// export class QuestionModel extends Model({question:String,type:String}){}
-
+import firebase from "firebase/app";
 export class QuestionModel {
   public constructor(readonly question: string, readonly type: string) {}
 

@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 export class UserModel {
   public constructor(
     readonly name: string,

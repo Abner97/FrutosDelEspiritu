@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 //Assets
 import bottom_right_image from "../assets/images/logo_without_label.png";
-import bottom_left_image from "../assets/images/A1.png";
+import bottom_left_image from "../assets/images/A1.jpeg";
 import LOGO_NEGRO from "../assets/images/LOGO_NEGRO.png";
 import LoginForm from "../components/LoginForm";
 
@@ -46,12 +46,12 @@ const LogoImage = styled.img`
 
 const Login: React.FC = () => {
   return (
-    <StyledContainer className="d-flex h-100 justify-content-center  align-items-center">
+    <StyledContainer className='d-flex h-100 justify-content-center  align-items-center'>
       <Container fluid>
-        <Row className="justify-content-center  ">
+        <Row className='justify-content-center  '>
           <LogoImage src={LOGO_NEGRO} />
         </Row>
-        <Row className="justify-content-center  ">
+        <Row className='justify-content-center  '>
           <Col lg={4} xl={4} xs={12}>
             <LoginForm />
           </Col>

@@ -1,7 +1,7 @@
 import { auth, db } from "../../firebase";
 import { SignUp } from "./interfaces";
 import { UserModel } from "../../models/user_data_model";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 export const getUser = async (signUpData: SignUp) => {
   try {

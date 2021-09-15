@@ -21,14 +21,37 @@ import { AuthContext } from "../context/auth/AuthContext";
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 
-import bottom_left_image from "../assets/images/A1.png";
+import bottom_left_image from "../assets/images/A1.jpeg";
 
 import DonateButton from "../components/DonateButton";
 import { saveResultsOnFireBase } from "../services/results";
 import BarChart from "../components/BarChart";
 import ResultsTable from "../components/ResultsTable";
-import { resultsMap } from "../data/results/results_map";
-import { chartValue } from "../data/results/chart_config";
+
+import {
+  DES_AMOR,
+  DES_BENIGNIDAD,
+  DES_BONDAD,
+  DES_DOMINIO_PROPIO,
+  DES_FE,
+  DES_GOZO,
+  DES_MANSEDUMBRE,
+  DES_PACIENCIA,
+  DES_PAZ,
+} from "../data/answers/all_descriptions";
+import {
+  COL_AMOR,
+  COL_BENIGNIDAD,
+  COL_BONDAD,
+  COL_DOMINIO_PROPIO,
+  COL_FE,
+  COL_GOZO,
+  COL_MANSEDUMBRE,
+  COL_PACIENCIA,
+  COL_PAZ,
+} from "../data/answers/all_colors";
+import { ApexOptions } from "apexcharts";
+import { Ichart } from "../interfaces/result-interfaces";
 
 const StyledContainer = styled.div`
   background: white;
@@ -60,6 +83,120 @@ const InfoStyled = styled.b`
 
 const Results = () => {
   //State Handling
+  let resultsMap: Array<RS> = [
+    { fruto: "Amor", result: 0, description: DES_AMOR, color: COL_AMOR },
+    {
+      fruto: "Benignidad",
+      result: 0,
+      description: DES_BENIGNIDAD,
+      color: COL_BENIGNIDAD,
+    },
+    { fruto: "Bondad", result: 0, description: DES_BONDAD, color: COL_BONDAD },
+    {
+      fruto: "Dominio propio",
+      result: 0,
+      description: DES_DOMINIO_PROPIO,
+      color: COL_DOMINIO_PROPIO,
+    },
+    { fruto: "Fe", result: 0, description: DES_FE, color: COL_FE },
+    { fruto: "Gozo", result: 0, description: DES_GOZO, color: COL_GOZO },
+    {
+      fruto: "Mansedumbre",
+      result: 0,
+      description: DES_MANSEDUMBRE,
+      color: COL_MANSEDUMBRE,
+    },
+    {
+      fruto: "Paciencia",
+      result: 0,
+      description: DES_PACIENCIA,
+      color: COL_PACIENCIA,
+    },
+    { fruto: "Paz", result: 0, description: DES_PAZ, color: COL_PAZ },
+  ];
+
+  const chartOptions: ApexOptions = {
+    chart: {
+      background: "#36773a",
+
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      },
+      height: 500,
+      type: "bar",
+      events: {
+        click: function (chart: any, w: any, e: any) {
+          // console.log(chart, w, e)
+        },
+      },
+    },
+    title: {
+      text: `Fruto del Espíritu: `,
+      align: "left",
+
+      margin: 10,
+      offsetX: 0,
+      offsetY: 0,
+      floating: false,
+      style: {
+        fontSize: "14px",
+        fontWeight: "bold",
+        fontFamily: "Average, serif",
+        color: "#90c73f",
+      },
+    },
+    colors: [],
+    plotOptions: {
+      bar: {
+        columnWidth: "45%",
+        distributed: true,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    legend: {
+      show: false,
+    },
+    xaxis: {
+      categories: [],
+      labels: {
+        style: {
+          colors: [],
+          fontSize: "12px",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: "#90c73f",
+          fontSize: "12px",
+        },
+      },
+    },
+  };
+
+  const chartValue: Ichart = {
+    series: [
+      {
+        name: `Elementos del Fruto`,
+        data: [],
+      },
+    ],
+    options: chartOptions,
+  };
+
   const questionsContext = useContext(QuestionsContext);
   const fruitsContexts = useContext(FruitsContext);
   const { name } = useContext(AuthContext);
@@ -95,6 +232,7 @@ const Results = () => {
     }
 
     resultsMap.forEach((fruto) => {
+      fruto.result = parseFloat(localStorage.getItem(`P${fruto.fruto}`)!);
       chartValue.options.xaxis?.categories.push(fruto.fruto);
 
       if (chartValue.options.xaxis?.labels?.style?.colors instanceof Array) {
@@ -109,9 +247,11 @@ const Results = () => {
     sortResults(results);
     //guardando datos en la BD
     saveResultsOnFireBase(results);
-    setShow(true);
+
     setChart(chartValue);
+
     window.dispatchEvent(new Event("resize"));
+    setShow(true);
     // eslint-disable-next-line
   }, []);
 
@@ -129,9 +269,13 @@ const Results = () => {
         </Row>
         <Row className='justify-content-center align-items-center'>
           <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
-            <ResultsTable show={show} results={results}></ResultsTable>
+            {show ? (
+              <ResultsTable show={show} results={results}></ResultsTable>
+            ) : (
+              <div></div>
+            )}
           </Col>
-          <BarChart chart={chart} />
+          {show ? <BarChart chart={chart} /> : <div></div>}
         </Row>
         <Row className='justify-content-center '>
           <Col

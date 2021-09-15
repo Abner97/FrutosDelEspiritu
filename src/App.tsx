@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-//import Home from "./components/Home";
-//import Navigation from "./components/Navbar";
 import AuthState from "./context/auth/AuthState";
 import FrutosState from "./context/frutos/FrutosState";
 import QuestionsState from "./context/questions/QuestionsState";
@@ -12,7 +10,6 @@ function App() {
     <QuestionsState>
       <FrutosState>
         <AuthState>
-          {/* <Navigation /> */}
           <Routes></Routes>
         </AuthState>
       </FrutosState>

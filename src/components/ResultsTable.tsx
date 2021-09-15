@@ -1,6 +1,6 @@
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Table from "react-bootstrap/esm/Table";
 import styled from "styled-components";
@@ -28,15 +28,6 @@ const ResultsTable: React.FC<ResultsTableProps> = ({
     tempArray[index] = value;
     setShowDescription(tempArray);
   }
-
-  useEffect(() => {
-    props.results.forEach((item) => {
-      tempArray.push(false);
-      setShowDescription(tempArray);
-      item.result = parseFloat(localStorage.getItem(`P${item.fruto}`)!);
-    });
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <Table striped bordered hover>
