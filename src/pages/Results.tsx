@@ -52,6 +52,8 @@ import {
 } from "../data/answers/all_colors";
 import { ApexOptions } from "apexcharts";
 import { Ichart } from "../interfaces/result-interfaces";
+import BookModal from "../components/BookModal";
+import RevolucionButton from "../components/RevolucionButton";
 
 const StyledContainer = styled.div`
   background: white;
@@ -117,7 +119,7 @@ const Results = () => {
 
   const chartOptions: ApexOptions = {
     chart: {
-      background: "#36773a",
+      background: "#314613",
 
       animations: {
         enabled: true,
@@ -257,6 +259,7 @@ const Results = () => {
 
   return (
     <StyledContainer className='h-100'>
+      <BookModal />
       <Container className='w-100 h-full  align-content-center justify-content-center '>
         <Row className='justify-content-start'>
           <Col lg={6} md={6} sm={12} xs={12}>
@@ -280,17 +283,19 @@ const Results = () => {
         <Row className='justify-content-center '>
           <Col
             lg={12}
-            md={6}
+            md={12}
             sm={12}
             xs={12}
-            className='d-flex justify-content-center'
+            className='d-flex justify-content-center align-items-center flex-wrap'
           >
             <StartAgainButton />
             <DonateButton />
+            <RevolucionButton />
           </Col>
           <Col></Col>
         </Row>
       </Container>
+
       <LeftTopImage src={top_left_image} />
 
       <LeftBottomImage src={bottom_left_image} />
