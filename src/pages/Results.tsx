@@ -88,7 +88,7 @@ const CourseImage = styled.img`
 `;
 
 const InfoStyled = styled.b`
-  color: #787878;
+  color: #000000;
   font-size: 14px;
 `;
 
