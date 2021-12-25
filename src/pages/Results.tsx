@@ -295,17 +295,42 @@ const Results = () => {
             )}
           </Col>
           <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
-            <CourseImage src={banner} onClick={gotoCoursePage} />
+            <Row className='justify-content-start my-1'>
+              <Col>
+                <InfoStyled>
+                  Te invitamos a que te tomes este curso para ayudarte a crecer
+                  en cada elemento del fruto del Espíritu.
+                </InfoStyled>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <CourseImage src={banner} onClick={gotoCoursePage} />
+              </Col>
+            </Row>
           </Col>
         </Row>
 
         <Row className='justify-content-center align-items-center'>
           {show ? <BarChart chart={chart} /> : <div></div>}
+
           <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
-            <AmazonIframe
-              height='500'
-              src='https://read.amazon.com/kp/card?asin=B09NCX55WV&preview=inline&linkCode=kpe&ref_=cm_sw_r_kb_dp_6TYDGYBQYMVD1GEVX9WF&tag=mobilea083c99-20'
-            />
+            <Row className='justify-content-start my-1'>
+              <Col>
+                <InfoStyled>
+                  Este libro te ayudará a crecer en tu carácter y es el libro de
+                  texto del curso Madurez a Otro Nivel.
+                </InfoStyled>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <AmazonIframe
+                  height='425'
+                  src='https://read.amazon.com/kp/card?asin=B09NCX55WV&preview=inline&linkCode=kpe&ref_=cm_sw_r_kb_dp_6TYDGYBQYMVD1GEVX9WF&tag=mobilea083c99-20'
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Row className='justify-content-center '>
