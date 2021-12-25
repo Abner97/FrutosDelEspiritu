@@ -21,7 +21,7 @@ import { AuthContext } from "../context/auth/AuthContext";
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 
-import bottom_left_image from "../assets/images/A1.jpeg";
+import banner from "../assets/images/banner.png";
 
 import DonateButton from "../components/DonateButton";
 import { saveResultsOnFireBase } from "../services/results";
@@ -52,8 +52,6 @@ import {
 } from "../data/answers/all_colors";
 import { ApexOptions } from "apexcharts";
 import { Ichart } from "../interfaces/result-interfaces";
-import BookModal from "../components/BookModal";
-import RevolucionButton from "../components/RevolucionButton";
 
 const StyledContainer = styled.div`
   background: white;
@@ -68,20 +66,38 @@ const LeftTopImage = styled.img`
   width: 10%;
 `;
 
-const LeftBottomImage = styled.img`
-  width: 0px;
-  @media (min-width: 800px) {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    width: 20%;
-  }
+const AmazonIframe = styled.iframe`
+  width: 100%;
+  heigth: 200px;
+`;
+
+// const LeftBottomImage = styled.img`
+//   width: 0px;
+//   @media (min-width: 800px) {
+//     position: absolute;
+//     bottom: 0px;
+//     right: 0px;
+//     width: 15%;
+//   }
+// `;
+
+const CourseImage = styled.img`
+  width: 100%;
+  filter: drop-shadow(5px 5px 5px #7d7d7d);
+  cursor: pointer;
 `;
 
 const InfoStyled = styled.b`
   color: #787878;
   font-size: 14px;
 `;
+
+function gotoCoursePage() {
+  window.open(
+    "https://toquedegracia.net/cursos/madurez-a-otro-nivel/",
+    "_blank"
+  );
+}
 
 const Results = () => {
   //State Handling
@@ -259,7 +275,7 @@ const Results = () => {
 
   return (
     <StyledContainer className='h-100'>
-      <BookModal />
+      {/* <BookModal /> */}
       <Container className='w-100 h-full  align-content-center justify-content-center '>
         <Row className='justify-content-start'>
           <Col lg={6} md={6} sm={12} xs={12}>
@@ -278,7 +294,19 @@ const Results = () => {
               <div></div>
             )}
           </Col>
+          <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
+            <CourseImage src={banner} onClick={gotoCoursePage} />
+          </Col>
+        </Row>
+
+        <Row className='justify-content-center align-items-center'>
           {show ? <BarChart chart={chart} /> : <div></div>}
+          <Col lg={6} md={6} sm={12} xs={12} className='my-4'>
+            <AmazonIframe
+              height='500'
+              src='https://read.amazon.com/kp/card?asin=B09NCX55WV&preview=inline&linkCode=kpe&ref_=cm_sw_r_kb_dp_6TYDGYBQYMVD1GEVX9WF&tag=mobilea083c99-20'
+            />
+          </Col>
         </Row>
         <Row className='justify-content-center '>
           <Col
@@ -290,15 +318,12 @@ const Results = () => {
           >
             <StartAgainButton />
             <DonateButton />
-            <RevolucionButton />
           </Col>
           <Col></Col>
         </Row>
       </Container>
 
       <LeftTopImage src={top_left_image} />
-
-      <LeftBottomImage src={bottom_left_image} />
     </StyledContainer>
   );
 };

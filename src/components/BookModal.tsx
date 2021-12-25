@@ -47,10 +47,6 @@ function BookModal() {
           <Modal.Title>Nuevo libro por el Dr. Fernando Abella</Modal.Title>
         </Modal.Header>
         <Modal.Body className='p-0'>
-          {/* <Card.Img variant='top' src={bookImage} alt='Libro Revolución' />
-          <Card.Text>
-            ¡Un cambio permanente en tu carácter es más real de lo que piensas!
-          </Card.Text> */}
           <BookCard></BookCard>
         </Modal.Body>
         <Modal.Footer className='d-flex p-2 justify-content-around'>
