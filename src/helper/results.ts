@@ -31,9 +31,12 @@ export interface Results {
   color: string;
 }
 const calculateResults = (points: number, numberofQuestions: number) => {
-  const porcentage =
-    (parseFloat((points / numberofQuestions).toFixed(2)) * 100) / 4;
-  return porcentage;
+  const porcentage = (
+    (parseFloat((points / numberofQuestions).toFixed(2)) * 100) /
+    4
+  ).toFixed(2);
+
+  return parseFloat(porcentage);
 };
 
 export const getresults = (
