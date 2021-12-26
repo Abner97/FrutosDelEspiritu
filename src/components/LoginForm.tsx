@@ -25,11 +25,26 @@ import { SignUp } from "../services/auth/interfaces";
 
 const LoginSchema = Yup.object().shape({
   name: Yup.string()
+
     .min(3, "Muy Largo!")
     .max(50, "Muy Corto!")
     .required("Porfavor introduzca su nombre"),
   email: Yup.string().email().required("Porfavor introduzca su email"),
-  birthDay: Yup.string().required("Por favor elija su fecha de nacimiento"),
+  birthDay: Yup.string()
+    .test("test-name", "Ingrese una fecha realista", function (value) {
+      const { path, createError } = this;
+      let years = 0;
+
+      if (value) {
+        years = new Date().getFullYear() - new Date(value).getFullYear();
+      }
+
+      return (
+        (value && years > 5) ||
+        createError({ path, message: "Ingrese una fecha realista." })
+      );
+    })
+    .required("Por favor elija su fecha de nacimiento"),
   country: Yup.string().required("Por favor elija un país"),
 });
 
@@ -110,7 +125,7 @@ const LoginForm: React.FC = () => {
                 <Field name='name'>
                   {({ field, ...props }: FieldProps) => (
                     <FormGroup controlId='name' as={Col}>
-                      <FormLabel>Tú Nombre</FormLabel>
+                      <FormLabel>Tu Nombre</FormLabel>
                       <InputGroup>
                         <FormControl
                           type={"text"}
