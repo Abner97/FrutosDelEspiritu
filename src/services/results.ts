@@ -61,6 +61,7 @@ export const saveResultsOnFireBase = async (results: Array<Results>) => {
       await updateUserInfo(userInfoToJSON());
       await save(results, userEmail);
     } else if (newUser === "yes") {
+      localStorage.setItem("newUser", "no");
       await saveData(userInfoToJSON());
       await save(results, userEmail);
     } else {
