@@ -39,10 +39,7 @@ const LoginSchema = Yup.object().shape({
       if (value) {
         years = new Date().getFullYear() - new Date(value).getFullYear();
       }
-      console.log(
-        (value && years > 5) ||
-          createError({ path, message: "Ingrese una fecha realista." })
-      );
+
       return (
         (value && years > 5) ||
         createError({ path, message: "Ingrese una fecha realista." })
