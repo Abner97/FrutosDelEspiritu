@@ -20,7 +20,8 @@ import { getUser } from "../services/auth/auth";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";
 import { SignUp } from "../services/auth/interfaces";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 //Interfaces
 
 const LoginSchema = Yup.object().shape({
@@ -38,7 +39,10 @@ const LoginSchema = Yup.object().shape({
       if (value) {
         years = new Date().getFullYear() - new Date(value).getFullYear();
       }
-
+      console.log(
+        (value && years > 5) ||
+          createError({ path, message: "Ingrese una fecha realista." })
+      );
       return (
         (value && years > 5) ||
         createError({ path, message: "Ingrese una fecha realista." })
@@ -51,7 +55,6 @@ const LoginSchema = Yup.object().shape({
 const LoginForm: React.FC = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
-
   const { saveCredentials, email, name } = authContext;
 
   const sendCredentials = (
@@ -96,7 +99,7 @@ const LoginForm: React.FC = () => {
             name: "",
             email: "",
             country: "United States",
-            birthDay: "09/02/1980",
+            birthDay: "09/02/2022",
           }}
           validationSchema={LoginSchema}
           onSubmit={(
@@ -119,7 +122,7 @@ const LoginForm: React.FC = () => {
             });
           }}
         >
-          {({ touched, errors }) => (
+          {({ touched, errors, setFieldValue, values }) => (
             <Form className={" text-black text-lg p-30"}>
               <Frm.Row>
                 <Field name='name'>
@@ -167,15 +170,25 @@ const LoginForm: React.FC = () => {
                       <FormLabel>Fecha de Nacimiento</FormLabel>
                       <InputGroup>
                         <FormControl
+                          as={DatePicker}
                           type={"date"}
-                          value={field.value}
-                          onChange={field.onChange}
+                          name='birthDay'
+                          selected={new Date(values.birthDay)}
                           isInvalid={!!errors.birthDay}
-                          placeholder='09/08/1980'
+                          onChange={(date) => {
+                            if (date) {
+                              setFieldValue(
+                                "birthDay",
+                                new Date(date.toString()).toLocaleDateString()
+                              );
+                            }
+                          }}
                         />
-                        <Frm.Control.Feedback type='invalid'>
-                          {errors.birthDay}
-                        </Frm.Control.Feedback>
+                        {errors.birthDay ? (
+                          <div style={{ color: "#dc3545", fontSize: "80%" }}>
+                            {errors.birthDay}
+                          </div>
+                        ) : null}
                       </InputGroup>
                     </FormGroup>
                   )}
