@@ -176,7 +176,7 @@ const LoginForm: React.FC = () => {
                             if (date) {
                               setFieldValue(
                                 "birthDay",
-                                new Date(date.toString()).toLocaleDateString()
+                                new Date(date.toString()).toISOString()
                               );
                             }
                           }}
