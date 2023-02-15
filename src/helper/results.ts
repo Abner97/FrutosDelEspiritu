@@ -1,28 +1,43 @@
 import { fruitsPoints } from "../context/frutos/interfaces";
 
 import { QuestionModel } from "../models/question_model";
-import { DES_AMOR, DES_GOZO, DES_PAZ,
+import {
+  DES_AMOR,
+  DES_GOZO,
+  DES_PAZ,
   DES_PACIENCIA,
   DES_BENIGNIDAD,
   DES_FE,
   DES_MANSEDUMBRE,
   DES_DOMINIO_PROPIO,
-  DES_BONDAD } from '../data/answers/all_descriptions';
-import { COL_AMOR, COL_BENIGNIDAD, COL_BONDAD, COL_DOMINIO_PROPIO, COL_FE, COL_GOZO, COL_MANSEDUMBRE, COL_PACIENCIA, COL_PAZ } from "../data/answers/all_colors";
+  DES_BONDAD,
+} from "../data/answers/all_descriptions";
+import {
+  COL_AMOR,
+  COL_BENIGNIDAD,
+  COL_BONDAD,
+  COL_DOMINIO_PROPIO,
+  COL_FE,
+  COL_GOZO,
+  COL_MANSEDUMBRE,
+  COL_PACIENCIA,
+  COL_PAZ,
+} from "../data/answers/all_colors";
 
-
-
-export interface results {
+export interface Results {
   fruto: string;
   result: number;
   description: string;
-  color:string;
+  color: string;
 }
-const calculateResults=(points:number,numberofQuestions:number)=>{
-  const porcentage=((parseFloat((points / numberofQuestions).toPrecision(3)))*100)/4;
-  return porcentage;
-}
+const calculateResults = (points: number, numberofQuestions: number) => {
+  const porcentage = (
+    (parseFloat((points / numberofQuestions).toFixed(2)) * 100) /
+    4
+  ).toFixed(2);
 
+  return parseFloat(porcentage);
+};
 
 export const getresults = (
   questions: Array<QuestionModel>,
@@ -82,51 +97,76 @@ export const getresults = (
         break;
     }
   }
-  
+
   for (let fruto of frutos) {
     switch (fruto.fruto) {
       case "Gozo":
-        Pgozo = calculateResults(fruto.points,gozo);
+        Pgozo = calculateResults(fruto.points, gozo);
         break;
       case "Amor":
-        Pamor = calculateResults(fruto.points,amor);
+        Pamor = calculateResults(fruto.points, amor);
         break;
       case "Benignidad":
-        Pbenignidad =calculateResults(fruto.points,benignidad);
+        Pbenignidad = calculateResults(fruto.points, benignidad);
         break;
       case "Bondad":
-        Pbondad = calculateResults(fruto.points,bondad);
+        Pbondad = calculateResults(fruto.points, bondad);
         break;
       case "Dominio propio":
-        PDominioPropio = calculateResults(fruto.points,dominioPropio);
+        PDominioPropio = calculateResults(fruto.points, dominioPropio);
         break;
       case "Fe":
-        Pfe = calculateResults(fruto.points,fe);
+        Pfe = calculateResults(fruto.points, fe);
         break;
       case "Mansedumbre":
-        Pmansedumbre = calculateResults(fruto.points,mansedumbre);
+        Pmansedumbre = calculateResults(fruto.points, mansedumbre);
         break;
       case "Paciencia":
-        Ppaciencia = calculateResults(fruto.points,paciencia);
+        Ppaciencia = calculateResults(fruto.points, paciencia);
         break;
       case "Paz":
-        Ppaz = calculateResults(fruto.points,paz);
+        Ppaz = calculateResults(fruto.points, paz);
         break;
       default:
         break;
     }
   }
 
-  const result: results[] = [
-    { fruto: "Amor", result: Pamor, description: DES_AMOR,color:COL_AMOR },
-    { fruto: "Benignidad", result: Pbenignidad, description: DES_BENIGNIDAD,color:COL_BENIGNIDAD  },
-    { fruto: "Bondad", result: Pbondad, description: DES_BONDAD,color:COL_BONDAD  },
-    { fruto: "Dominio propio", result: PDominioPropio, description: DES_DOMINIO_PROPIO,color:COL_DOMINIO_PROPIO  },
-    { fruto: "Fe", result: Pfe, description: DES_FE,color:COL_FE  },
-    { fruto: "Gozo", result: Pgozo, description: DES_GOZO,color:COL_GOZO  },
-    { fruto: "Mansedumbre", result: Pmansedumbre, description: DES_MANSEDUMBRE,color:COL_MANSEDUMBRE  },
-    { fruto: "Paciencia", result: Ppaciencia, description: DES_PACIENCIA,color:COL_PACIENCIA  },
-    { fruto: "Paz", result: Ppaz, description: DES_PAZ,color:COL_PAZ  },
+  const result: Results[] = [
+    { fruto: "Amor", result: Pamor, description: DES_AMOR, color: COL_AMOR },
+    {
+      fruto: "Benignidad",
+      result: Pbenignidad,
+      description: DES_BENIGNIDAD,
+      color: COL_BENIGNIDAD,
+    },
+    {
+      fruto: "Bondad",
+      result: Pbondad,
+      description: DES_BONDAD,
+      color: COL_BONDAD,
+    },
+    {
+      fruto: "Dominio propio",
+      result: PDominioPropio,
+      description: DES_DOMINIO_PROPIO,
+      color: COL_DOMINIO_PROPIO,
+    },
+    { fruto: "Fe", result: Pfe, description: DES_FE, color: COL_FE },
+    { fruto: "Gozo", result: Pgozo, description: DES_GOZO, color: COL_GOZO },
+    {
+      fruto: "Mansedumbre",
+      result: Pmansedumbre,
+      description: DES_MANSEDUMBRE,
+      color: COL_MANSEDUMBRE,
+    },
+    {
+      fruto: "Paciencia",
+      result: Ppaciencia,
+      description: DES_PACIENCIA,
+      color: COL_PACIENCIA,
+    },
+    { fruto: "Paz", result: Ppaz, description: DES_PAZ, color: COL_PAZ },
   ];
 
   result.forEach((item) => {
@@ -136,6 +176,4 @@ export const getresults = (
   result.forEach((item) => {
     localStorage.setItem(`DES${item.fruto}`, item.description);
   });
-
-
 };

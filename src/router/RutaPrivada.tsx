@@ -13,18 +13,13 @@ const RutaPrivada = ({ Component, path, ...props }: RutaPrivadaProps) => {
   const { email, name, cargando } = authContext;
 
   const autenticado: boolean = name !== "" && email !== "";
-  // useEffect(() => {
-  //   name = localStorage.getItem("Name");
-  //   email = localStorage.getItem("Email");
-  //   //eslint-disable-next-line
-  // }, []);
 
   return (
     <Route
       exact
       {...props}
       render={(props) =>
-        !autenticado && cargando ? <Redirect to="/login" /> : <Component />
+        !autenticado && cargando ? <Redirect to='/login' /> : <Component />
       }
     />
   );

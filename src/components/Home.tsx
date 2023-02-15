@@ -7,7 +7,7 @@ import styled from "styled-components";
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 import bottom_right_image from "../assets/images/logo_without_label.png";
-import bottom_left_image from "../assets/images/A1.png";
+import bottom_left_image from "../assets/images/A1.jpeg";
 
 //Styled Components
 const StyledContainer = styled.div`
@@ -52,7 +52,7 @@ const LeftBottomImage = styled.img`
 const Home: React.FC = () => {
   return (
     <>
-      <StyledContainer className="d-flex h-100 justify-content-center  align-items-center animation ">
+      <StyledContainer className='d-flex h-100 justify-content-center  align-items-center animation '>
         <Question />
         <LeftTopImage src={top_left_image} />
         <RightBottomImage src={bottom_right_image} />

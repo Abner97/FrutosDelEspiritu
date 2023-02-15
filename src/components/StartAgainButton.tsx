@@ -18,7 +18,11 @@ const StartAgainButton: React.FC = () => {
   const history = useHistory();
 
   const startAgain = () => {
+    const tempBannerOption = localStorage.getItem("showBanner");
     localStorage.clear();
+    if (tempBannerOption) {
+      localStorage.setItem("showBanner", tempBannerOption);
+    }
     frutosContext.resetFrutosState();
     questionsContext.resetStateQuestions();
     saveCredentials("", "");
@@ -26,7 +30,7 @@ const StartAgainButton: React.FC = () => {
   };
 
   return (
-    <Button variant="danger" className="mr-5" onClick={() => startAgain()}>
+    <Button variant='danger' className='m-5 ' onClick={() => startAgain()}>
       Volver a hacer el Test
     </Button>
   );
