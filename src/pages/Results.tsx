@@ -21,7 +21,7 @@ import { AuthContext } from "../context/auth/AuthContext";
 //Assets
 import top_left_image from "../assets/images/toque_gracia_logo.svg";
 
-import banner from "../assets/images/banner.png";
+import banner from "../assets/images/madurez_a_otro_nivel.jpg";
 
 import DonateButton from "../components/DonateButton";
 import { saveResultsOnFireBase } from "../services/results";
@@ -94,7 +94,7 @@ const InfoStyled = styled.b`
 
 function gotoCoursePage() {
   window.open(
-    "https://toquedegracia.net/cursos/madurez-a-otro-nivel/",
+    "https://toquedegracia.net/cursos/madurez-a-otro-nivel-pro-cuenta-propia-sin-credito/",
     "_blank"
   );
 }
@@ -300,6 +300,8 @@ const Results = () => {
                 <InfoStyled>
                   Te invitamos a que te tomes este curso para ayudarte a crecer
                   en cada elemento del fruto del Espíritu.
+                  <br />
+                  <i>Haga click en la imagen de abajo</i>
                 </InfoStyled>
               </Col>
             </Row>
@@ -320,6 +322,8 @@ const Results = () => {
                 <InfoStyled>
                   Este libro te ayudará a crecer en tu carácter y es el libro de
                   texto del curso Madurez a Otro Nivel.
+                  <br />
+                  <i>Haga click en la imagen de abajo</i>
                 </InfoStyled>
               </Col>
             </Row>
@@ -333,6 +337,7 @@ const Results = () => {
             </Row>
           </Col>
         </Row>
+
         <Row className='justify-content-center '>
           <Col
             lg={12}
